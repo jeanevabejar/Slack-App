@@ -1,14 +1,25 @@
+import React, { useEffect } from "react";
 import "./App.css";
-import Dashboard from "./pages/Dashboard/Dashboard"
+
+import { loader } from "./Utils/animations";
+import Preloader from "./Components/Preloader";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 function App() {
+  useEffect(() => {
+    return () => {
+  loader()
+    };
+  }, []);
+
   return (
     <>
-      {/* <Login/> */}
-      {/* <Signup/> */}
-      <Dashboard />
-      {/* <Navbar/> */}
+     <Preloader/>
+     <Dashboard/>
     </>
   );
 }

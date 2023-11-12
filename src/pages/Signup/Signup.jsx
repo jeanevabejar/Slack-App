@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Link } from 'react-router-dom';
+import Button from '../../Components/Button/Button';
+import Input from '../../Components/Input/Input';
 import logo from '../../assets/logo.png';
 
 
@@ -9,11 +11,12 @@ const Signup = () => {
     <div className="sign-up-container">
       <div><img src={logo} alt="logo.png" className='sign-up-logo' /></div>
       <Form className='sign-up-form'>
-        <input type="text" placeholder='FirstName' />
-        <input type="text" placeholder='LastName' />
-        <input type="email" placeholder='Email' />
-        <input type="password" placeholder='Password' />
-        <button type='submit'>create account</button>
+        <Input type="text" placeholder='FirstName' />
+        <Input type="text" placeholder='LastName' />
+        <Input type="email" placeholder='Email' />
+        <Input type="text" placeholder='Username' />
+        <Input type="password" placeholder='Password' />
+        <Button type='submit' text={"create account"}/>
       </Form>
       <div className="signup-suggestion">
         <h3>

@@ -1,0 +1,35 @@
+@use "./base" as *;
+
+.loader-logo{
+  position: relative;
+    width: clamp(2rem,10vw,10rem);
+    left: 1rem;
+    top: 2rem;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-50px); }
+    100% { transform: translateY(0); }
+    
+}
+
+.loader {
+    width: clamp(1rem,8vw,8rem) ;
+    height: clamp(1rem,8vw,8rem);
+    border: 20px solid white;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 

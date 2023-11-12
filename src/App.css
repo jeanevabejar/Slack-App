@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Playfair Display", serif;
 }
 
 body {
@@ -12,6 +14,17 @@ body {
   background-image: url("../../src/assets/background1.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.app {
+  background-color: #1f3b2f;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(5rem, 15vw, 15rem);
 }
 
 .sign-in-page {
@@ -296,7 +309,7 @@ body {
   justify-content: center;
 }
 
-.dashboard-container {
+.home-container {
   min-width: 94%;
   min-height: 90vh;
   max-width: 94%;
@@ -310,7 +323,7 @@ body {
   align-items: center;
 }
 
-.dash-message {
+.home-text {
   min-width: 100%;
   min-height: 25vh;
   max-width: 100%;
@@ -320,11 +333,11 @@ body {
   font-weight: bolder;
   color: #1f3b2f;
 }
-.dash-message img {
+.home-text img {
   width: clamp(1rem, 6vw, 6rem);
 }
 
-.dash-message2 {
+.home-subtext {
   min-width: 40%;
   min-height: 30vh;
   max-width: 40%;
@@ -332,4 +345,43 @@ body {
   font-size: clamp(1rem, 1.5vw, 1.5rem);
   text-align: center;
   color: #495d54;
+  padding-top: 1.5rem;
+}
+
+.loader-logo {
+  position: relative;
+  width: clamp(2rem, 10vw, 10rem);
+  left: 1rem;
+  top: 2rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.loader {
+  width: clamp(1rem, 8vw, 8rem);
+  height: clamp(1rem, 8vw, 8rem);
+  border: 20px solid white;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=App.css.map */

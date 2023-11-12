@@ -6,9 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
-.dashboard-container{
+.home-container{
     @include min(94%, 90vh);
     @include max(94%, 90vh);
     background-color: white;
@@ -18,9 +17,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
-.dash-message{
+.home-text{
     @include min(100%, 25vh);
     @include max(100%, 25vh);
     font-size: clamp(1rem, 3vw, 3rem);
@@ -33,10 +33,11 @@
     }
 }
 
-.dash-message2{
+.home-subtext{
     @include min(40%, 30vh);
     @include max(40%, 30vh);
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     text-align: center;
     color: $secondColor;
+    padding-top: 1.5rem;
 }

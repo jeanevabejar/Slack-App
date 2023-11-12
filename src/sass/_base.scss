@@ -1,0 +1,28 @@
+$backgroundImg: url("../../src/assets/background1.png");
+$primaryColor: #1f3b2f;
+$secondColor: #495d54;
+
+@mixin min($minW, $minH) {
+  min-width: $minW;
+  min-height: $minH;
+}
+
+@mixin max($maxW, $maxH) {
+  max-width: $maxW;
+  max-height: $maxH;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  // outline: 1px solid red;
+}
+
+body{
+  @include min(100%, 100vh);
+  @include max(100%, 100vh);
+  background-image: $backgroundImg;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

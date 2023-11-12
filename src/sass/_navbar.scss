@@ -1,0 +1,86 @@
+@use "./base" as *;
+
+.nav-container {
+  @include min(4%, 90vh);
+  @include max(4%, 90vh);
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  background-color: $primaryColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  
+}
+.nav-primary-icon {
+  @include min(100%, 30vh);
+  @include max(100%, 30vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  img {
+    width: clamp(0.5rem, 3.5vw, 3.5rem);
+  }
+  .icon1{
+    color: white;
+    width: 100%;
+    height: 5vh;
+    background-color: transparent;
+    border: none;
+    
+  }
+  .icon1:focus{
+        width: 100%;
+        height: 5vh;
+        background-color: white;
+        color: $secondColor;
+        border-top-left-radius: 20px;  
+        border-bottom-left-radius: 20px;
+        transition: 1.5s;
+    }
+
+    .icon2{
+        color: white;
+        width: 100%;
+        height: 5vh;
+        background-color: transparent;
+        border: none;
+        
+      }
+      .icon2:focus{
+            width: 100%;
+            height: 5vh;
+            background-color: $secondColor;
+            border-top-left-radius: 20px;  
+            border-bottom-left-radius: 20px;
+            transition: 1.5s;
+        }
+}
+
+.nav-icon-user {
+  @include min(100%, 60vh);
+  @include max(100%, 60vh);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2rem;
+
+  .icon3{
+    color: white;
+    width: 100%;
+    height: 5vh;
+    background-color: transparent;
+    border: none;
+    
+  }
+  .icon3:focus{
+        width: 100%;
+        height: 5vh;
+        background-color: $secondColor;
+        border-top-left-radius: 20px;  
+        border-bottom-left-radius: 20px;
+        transition: 1.5s;
+    }
+}

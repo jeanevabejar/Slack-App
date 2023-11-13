@@ -1,25 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import { loader } from "./Utils/animations";
 import Preloader from "./Components/Preloader";
-import Dashboard from "./pages/Dashboard/Dashboard";
 import { useNavigate } from "react-router-dom";
-
-
-
+import { Outlet } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
   useEffect(() => {
-    return () => {
-  loader()
+    const loadAndNavigate = async () => {
+      try {
+        await loader();
+        setLoadingComplete(true);
+        navigate("/dashboard/home");
+      } catch (error) {
+        console.error("Error during loading:", error);
+      }
     };
-  }, []);
+    loadAndNavigate();
+  }, [navigate]);
 
   return (
     <>
-     <Preloader/>
-     <Dashboard/>
+      {!loadingComplete && <Preloader />}
+      {loadingComplete && <Outlet />}
     </>
   );
 }

@@ -22,40 +22,45 @@
   img {
     width: clamp(0.5rem, 3.5vw, 3.5rem);
   }
-  .icon1{
+  .home-icon {
     color: white;
     width: 100%;
     height: 5vh;
     background-color: transparent;
     border: none;
-    
+    outline: none;
   }
-  .icon1:focus{
-        width: 100%;
-        height: 5vh;
-        background-color: white;
-        color: $secondColor;
-        border-top-left-radius: 20px;  
-        border-bottom-left-radius: 20px;
-        transition: 1.5s;
-    }
+  .home-active {
+    width: 100%;
+    height: 5vh;
+    background-color: white;
+    color: $secondColor;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: 1.5s;
+    border: none;
+    outline: none;
+  }
 
-    .icon2{
-        color: white;
-        width: 100%;
-        height: 5vh;
-        background-color: transparent;
-        border: none;
-        
-      }
-      .icon2:focus{
-            width: 100%;
-            height: 5vh;
-            background-color: $secondColor;
-            border-top-left-radius: 20px;  
-            border-bottom-left-radius: 20px;
-            transition: 1.5s;
-        }
+  .messenger-icon {
+    color: white;
+    width: 100%;
+    height: 5vh;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  .messenger-active {
+    width: 100%;
+    height: 5vh;
+    background-color: $secondColor;
+    color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: 1.5s;
+    border: none;
+    outline: none;
+  }
 }
 
 .nav-icon-user {
@@ -66,20 +71,23 @@
   justify-content: center;
   padding-bottom: 2rem;
 
-  .icon3{
+  .user-icon {
     color: white;
     width: 100%;
     height: 5vh;
     background-color: transparent;
     border: none;
-    
+    outline: none;
   }
-  .icon3:focus{
-        width: 100%;
-        height: 5vh;
-        background-color: $secondColor;
-        border-top-left-radius: 20px;  
-        border-bottom-left-radius: 20px;
-        transition: 1.5s;
-    }
+  .user-active {
+    width: 100%;
+    height: 5vh;
+    background-color: $secondColor;
+    color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: 1.5s;
+    border: none;
+    outline: none;
+  }
 }

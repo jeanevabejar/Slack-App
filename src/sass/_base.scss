@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
-$backgroundImg: url("../../src/assets/background1.png");
+$backgroundImg: url("../../src/assets/background.png");
 $primaryColor: #1f3b2f;
 $secondColor: #495d54;
 
@@ -30,6 +30,11 @@ body {
   background-repeat: no-repeat;
 }
 
+svg{
+  border: none;
+  outline: none;
+}
+
 .app {
   background-color: $primaryColor;
   width: 100%;
@@ -41,3 +46,4 @@ body {
   font-size: clamp(5rem, 15vw, 15rem);
 
 }
+

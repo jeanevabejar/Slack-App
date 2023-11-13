@@ -11,9 +11,14 @@ body {
   min-height: 100vh;
   max-width: 100%;
   max-height: 100vh;
-  background-image: url("../../src/assets/background1.png");
+  background-image: url("../../src/assets/background.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+svg {
+  border: none;
+  outline: none;
 }
 
 .app {
@@ -35,7 +40,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../../src/assets/background1.png");
+  background-image: url("../../src/assets/background.png");
 }
 
 .login-container {
@@ -128,7 +133,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../../src/assets/background1.png");
+  background-image: url("../../src/assets/background.png");
 }
 
 .sign-up-container {

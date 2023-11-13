@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from "../../assets/logo.png";
 
+
 const Home = () => {
   return (
     <div className="home-container">
@@ -17,6 +18,7 @@ const Home = () => {
         to stay close to your favorite people.
       </h1>
     </div>
+
   </div>
   )
 }

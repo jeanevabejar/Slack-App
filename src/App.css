@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Playfair Display", serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -354,14 +354,28 @@ svg {
 }
 
 .home-subtext {
-  min-width: 40%;
-  min-height: 30vh;
-  max-width: 40%;
-  max-height: 30vh;
+  min-width: 50%;
+  min-height: 25vh;
+  max-width: 50%;
+  max-height: 25vh;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
   text-align: center;
   color: #495d54;
-  padding-top: 1.5rem;
+}
+
+.home-btn {
+  min-width: 15%;
+  min-height: 7vh;
+  max-width: 15%;
+  max-height: 7vh;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: clamp(0.3rem, 2vw, 2rem);
+  font-weight: bold;
+  background-color: #1f3b2f;
+  color: white;
+  outline: none;
+  border: none;
 }
 
 .loader-logo {

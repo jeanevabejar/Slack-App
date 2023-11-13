@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import "@/App.css";
 
-import { loader } from "./Utils/animations";
-import Preloader from "./Components/Preloader/Preloader";
+import { loader } from "@/Utils";
+import Preloader from "components/Preloader";
 import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 

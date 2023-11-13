@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "assets/logo.png";
 import { Form, Link } from "react-router-dom";
-import Input from "../../Components/Input/Input";
-import Button from "../../Components/Button/Button";
+import Input from "components/Input";
+import Button from "components/Button";
 
 
 const Login = () => {

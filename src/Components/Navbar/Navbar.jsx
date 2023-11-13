@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import logo from "../../assets/logo.png";
+import logo from "assets/logo.png";
 import { Home, MessagesSquare, UserCircle2 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Button from "../Button/Button";
-import TooltipContainer from "../Tooltip/TooltipContainer";
+import Button from "components/Button";
+import TooltipContainer from "components/Tooltip";
 
 const Navbar = () => {
   const location = useLocation(); ///give the exact url where u are

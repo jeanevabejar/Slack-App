@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 $backgroundImg: url("../../src/assets/background.png");
 $primaryColor: #1f3b2f;
@@ -18,7 +18,7 @@ $secondColor: #495d54;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Playfair Display", serif;
+  font-family: 'Inter', sans-serif;
   // outline: 1px solid red;
 }
 

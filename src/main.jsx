@@ -3,11 +3,13 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // pages
-import App from "./App";
-import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Home from "./pages/Dashboard/Home";
+import App from "@/App";
+import Login from "pages/Login";
+import Signup from "pages/Signup";
+import {Dashboard, Home} from "pages/Dashboard";
+
+
+
 
 const router = createBrowserRouter([
   {

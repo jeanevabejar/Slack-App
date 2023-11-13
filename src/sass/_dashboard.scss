@@ -27,17 +27,31 @@
     text-align: center;
     font-weight: bolder;
     color: $primaryColor;
-
+    
     img{
         width: clamp(1rem, 6vw, 6rem)
     }
 }
 
 .home-subtext{
-    @include min(40%, 30vh);
-    @include max(40%, 30vh);
+    @include min(50%, 25vh);
+    @include max(50%, 25vh);
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     text-align: center;
     color: $secondColor;
-    padding-top: 1.5rem;
+
+}
+
+.home-btn{
+    @include min(15%, 7vh);
+    @include max(15%, 7vh);
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: clamp(0.3rem, 2vw, 2rem);
+    font-weight: bold;
+    background-color: $primaryColor;
+    color: white;
+    outline: none;
+    border: none;
+   
 }

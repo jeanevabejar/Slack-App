@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import logo from "assets/logo.png";
-import { Home, MessagesSquare, UserCircle2 } from "lucide-react";
+import { IoHome } from "react-icons/io5";
+import { PiChatsCircleBold } from "react-icons/pi";
+import { HiOutlineUserCircle } from "react-icons/hi";
 import { useNavigate, useLocation } from "react-router-dom";
 import Button from "components/Button";
 import TooltipContainer from "components/Tooltip";
@@ -25,15 +27,17 @@ const Navbar = () => {
             className={
               isActive("/dashboard/home") ? "home-active" : "home-icon"
             }
-            text={<Home size={30} data-tooltip-id="home" />}
+            text={<IoHome size={30} data-tooltip-id="home" />}
             onClick={() => navigate("home")}
           />
           <Button
             className={
-              isActive("/dashboard") ? "messenger-active" : "home-icon"
+              isActive("/dashboard/messenger")
+                ? "messenger-active"
+                : "home-icon"
             }
-            text={<MessagesSquare size={30} data-tooltip-id="messenger" />}
-            onClick={() => navigate("/dashboard")}
+            text={<PiChatsCircleBold size={30} data-tooltip-id="messenger" />}
+            onClick={() => navigate("messenger")}
           />
         </div>
         <div className="nav-icon-user">
@@ -42,7 +46,7 @@ const Navbar = () => {
             onClick={() => {
               navigate("/login");
             }}
-            text={<UserCircle2 size={35} data-tooltip-id="user" />}
+            text={<HiOutlineUserCircle size={35} data-tooltip-id="user" />}
           />
         </div>
       </div>

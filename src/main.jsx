@@ -7,6 +7,8 @@ import App from "@/App";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
 import {Dashboard, Home} from "pages/Dashboard";
+import { MessageBoard } from "./pages/Messages";
+import {SearchBar} from "components/SearchBar";
 
 
 
@@ -24,6 +26,16 @@ const router = createBrowserRouter([
             path: "home",
             element: <Home />,
           },
+          {
+            path: "messenger",
+            element: <MessageBoard/>,
+            children:[
+              {
+                path: "search",
+                element: <SearchBar/>,
+              }
+            ]
+          }, 
         ],
       },
     ],

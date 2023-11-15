@@ -1,1 +1,1 @@
-export { default as animation } from './animations';
+export { loader }  from './animations';

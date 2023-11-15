@@ -1,7 +1,11 @@
-@use './sass/base' as *;
+@use './sass/base';
 @use './sass/login';
 @use './sass/signup';
 @use './sass/navbar';
+@use './sass/navbarextension';
 @use './sass/dashboard';
+@use './sass/messageboard';
+@use './sass/messagebox';
 @use './sass/spinner';
+@use './sass/searchbar';
 

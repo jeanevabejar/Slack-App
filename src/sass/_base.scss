@@ -27,7 +27,6 @@ body {
   @include max(100%, 100vh);
   background-image: $backgroundImg;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
 svg{

@@ -3,8 +3,10 @@ import { Tooltip } from "react-tooltip";
 
 const TooltipContainer = () => {
 const style = {
-  backgroundColor:"#495d54",
-  borderRadius:"10px"
+  backgroundColor:"white",
+  borderRadius:"10px",
+  color:"#1f3b2f",
+  zIndex: "10"
 }
 
 
@@ -26,6 +28,24 @@ const style = {
         id="user"
         place="right"
         content="User Settings"
+        style={style}
+      />
+      <Tooltip
+        id="adduser"
+        place="top"
+        content="Add Friends"
+        style={style}
+      />
+      <Tooltip
+        id="directmessage"
+        place="top"
+        content="Direct Message"
+        style={style}
+      />
+      <Tooltip
+        id="channels"
+        place="top"
+        content="Channels"
         style={style}
       />
     </>

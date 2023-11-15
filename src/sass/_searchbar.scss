@@ -1,0 +1,36 @@
+@use "./base" as *;
+
+.search-bar {
+  @include min(80%, 5vh);
+  @include max(80%, 5vh);
+  border-radius: 30px;
+  background-color: white;
+  border: 2px solid $secondColor;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  input {
+    min-width: 80%;
+    height: 4vh;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+  }
+
+  button {
+    min-width: 20%;
+    border: none;
+    outline: none;
+    color: $primaryColor;
+    background-color: transparent;
+  }
+}
+.search-list {
+  @include min(80%, 65vh);
+  @include max(80%, 65vh);
+  border: 1px solid white;
+  
+}

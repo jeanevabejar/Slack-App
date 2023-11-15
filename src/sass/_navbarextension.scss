@@ -1,0 +1,62 @@
+@use "./base" as *;
+
+.nav-extension {
+  @include min(20%, 90vh);
+  background-color: $secondColor;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  position: absolute;
+  left: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.inside-container {
+  @include min(90%, 85vh);
+  display: flex;
+align-items: center;
+  flex-direction: column;
+justify-content: space-between;
+}
+
+.option-container {
+  @include min(100%, 7vh);
+  @include max(100%, 7vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.messenger-option {
+  @include min(80%, 5vh);
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  button {
+    color: $secondColor;
+    background-color: transparent;
+    height: 5vh;
+    width: 25%;
+    border: none;
+    outline: none;
+    justify-content: center;
+    z-index: 10;
+  }
+}
+
+.add-icon:hover {
+  background-color: $secondColor;
+  width: 25%;
+  height: 4vh;
+  color: white;
+  border-radius: 15px;
+  transform: scale(1);
+  transition: 1s;
+}
+

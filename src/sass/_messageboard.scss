@@ -1,0 +1,9 @@
+@use "./base" as *;
+
+.message-board{
+    @include min(100%, 100vh);
+    @include max(100%, 100vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

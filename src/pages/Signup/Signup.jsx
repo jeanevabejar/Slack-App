@@ -10,13 +10,13 @@ const Signup = () => {
     <div className='sign-up-page' >
     <div className="sign-up-container">
       <div><img src={logo} alt="logo.png" className='sign-up-logo' /></div>
-      <Form className='sign-up-form'>
-        <Input type="text" placeholder='FirstName' />
-        <Input type="text" placeholder='LastName' />
+      <Form className='sign-up-form' >
+        <Input type="text" placeholder='FullName' />
         <Input type="email" placeholder='Email' />
-        <Input type="text" placeholder='Username' />
+        <Input type="text" placeholder='UserName' />
         <Input type="password" placeholder='Password' />
-        <Button type='submit' text={"create account"}/>
+        <Input type="password" placeholder='Confirm Password' />
+        <Button type='submit' text="create account"/>
       </Form>
       <div className="signup-suggestion">
         <h3>

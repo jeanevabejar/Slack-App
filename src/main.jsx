@@ -7,8 +7,11 @@ import App from "@/App";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
 import {Dashboard, Home} from "pages/Dashboard";
-import { MessageBoard } from "./pages/Messages";
+import { MessagePanel } from "./pages/Messages";
 import {SearchBar} from "components/SearchBar";
+import ChatMessageList from "components/DirectMessage";
+import Channels from "components/Channels";
+import UserSettings from "./Components/UserSettings";
 
 
 
@@ -28,14 +31,26 @@ const router = createBrowserRouter([
           },
           {
             path: "messenger",
-            element: <MessageBoard/>,
+            element: <MessagePanel/>,
             children:[
               {
                 path: "search",
                 element: <SearchBar/>,
-              }
+              },
+              {
+                path: "message",
+                element: <ChatMessageList/>,
+              },
+              {
+                path: "channels",
+                element: <Channels/>,
+              },
             ]
-          }, 
+          },
+          {
+            path: "settings",
+            element: <UserSettings/>,
+          } 
         ],
       },
     ],

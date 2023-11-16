@@ -19,7 +19,6 @@ const Navbar = () => {
 
   return (
     <>
-      {" "}
       <div className="nav-container">
         <div className="nav-primary-icon">
           <img src={logo} alt="logo.png" />
@@ -32,19 +31,23 @@ const Navbar = () => {
           />
           <Button
             className={
-              isActive("/dashboard/messenger")
+              isActive("/dashboard/messenger/search")
                 ? "messenger-active"
                 : "home-icon"
             }
             text={<PiChatsCircleBold size={30} data-tooltip-id="messenger" />}
-            onClick={() => navigate("messenger")}
+            onClick={() => navigate("messenger/search")}
           />
         </div>
         <div className="nav-icon-user">
           <Button
-            className="user-icon"
+            className={
+              isActive("/dashboard/settings")
+                ? "user-active"
+                : "user-icon"
+            }
             onClick={() => {
-              navigate("/login");
+              navigate("/dashboard/settings");
             }}
             text={<HiOutlineUserCircle size={35} data-tooltip-id="user" />}
           />

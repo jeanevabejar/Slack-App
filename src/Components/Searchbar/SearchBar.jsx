@@ -4,9 +4,11 @@ import Input from "components/Input";
 import { BsSearch } from "react-icons/bs";
 import  SearchList from "./SearchList";
 
+
 const SearchBar = () => {
   return (
     <>
+     
       <div className="search-bar">
         <Input type="text" placeholder="search..." />
         <Button text={<BsSearch size={25} />} />

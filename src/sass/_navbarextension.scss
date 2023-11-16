@@ -1,0 +1,105 @@
+@use "./base" as *;
+
+.nav-extension {
+  @include min(20%, 90vh);
+  background-color: $secondColor;
+  border-radius: 30px;
+  position: absolute;
+  left: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.inner-container {
+  @include min(90%, 85vh);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.messenger-nav-container {
+  @include min(100%, 7vh);
+  @include max(100%, 7vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.messenger-navbar {
+  @include min(80%, 5vh);
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+
+  .add-icon {
+    color: $secondColor;
+    background-color: transparent;
+    height: 5vh;
+    width: 25%;
+    border: none;
+    outline: none;
+  
+  }
+  .add-icon:focus {
+    background-color: $secondColor;
+    width: 25%;
+    height: 4vh;
+    color: white;
+    border-radius: 15px;
+    transform: scale(1);
+  }
+  
+  .dm-icon {
+    color: $secondColor;
+    background-color: transparent;
+    height: 5vh;
+    width: 25%;
+    border: none;
+    outline: none;
+  
+  }
+  
+  .dm-icon:focus {
+    background-color: $secondColor;
+    width: 25%;
+    height: 4vh;
+    color: white;
+    border-radius: 15px;
+    transform: scale(1);
+  }
+  
+  .channels-icon {
+    color: $secondColor;
+    background-color: transparent;
+    height: 5vh;
+    width: 25%;
+    border: none;
+    outline: none;
+   
+  }
+  .channels-icon:focus {
+    background-color: $secondColor;
+    width: 25%;
+    height: 4vh;
+    color: white;
+    border-radius: 15px;
+    transform: scale(1);
+  }
+}
+
+
+.dm-list{
+  @include min(80%, 75vh);
+  @include max(80%, 75vh);
+}
+
+.channels-list{
+  @include min(80%, 75vh);
+  @include max(80%, 75vh);
+}

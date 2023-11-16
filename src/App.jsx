@@ -1,14 +1,33 @@
-import "./App.css";
-import Dashboard from "./pages/Dashboard/Dashboard"
+import React, { useEffect, useState } from "react";
+import "@/App.css";
+
+import { loader } from "@/Utils";
+import Preloader from "components/Preloader";
+import { useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 
 function App() {
+  const navigate = useNavigate();
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
+  useEffect(() => {
+    const loadAndNavigate = async () => {
+      try {
+        await loader();
+        setLoadingComplete(true);
+        navigate("/dashboard/home");
+      } catch (error) {
+        console.error("Error during loading:", error);
+      }
+    };
+    loadAndNavigate();
+  }, [navigate]);
+
   return (
     <>
-      {/* <Login/> */}
-      {/* <Signup/> */}
-      <Dashboard />
-      {/* <Navbar/> */}
+      {!loadingComplete && <Preloader />}
+      {loadingComplete && <Outlet />}
     </>
   );
 }

@@ -1,6 +1,8 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "assets/logo.png";
 import { Form, Link } from "react-router-dom";
+import Input from "components/Input";
+import Button from "components/Button";
 
 
 const Login = () => {
@@ -9,9 +11,9 @@ const Login = () => {
     <div className="login-container">
       <img src={logo} alt="FroggyLogo" className="login-logo" />
       <Form className="login-form" action="/dashboard">
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button type="submit">Log In</button>
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Password" />
+        <Button type="submit" text={"Log In"}/>
       </Form>
       <div className="suggestion-container">
         <h3>Don't have account?</h3>

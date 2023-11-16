@@ -1,4 +1,6 @@
-$backgroundImg: url("../../src/assets/background1.png");
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+$backgroundImg: url("../../src/assets/background.png");
 $primaryColor: #1f3b2f;
 $secondColor: #495d54;
 
@@ -16,13 +18,31 @@ $secondColor: #495d54;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Inter', sans-serif;
   // outline: 1px solid red;
 }
 
-body{
+body {
   @include min(100%, 100vh);
   @include max(100%, 100vh);
   background-image: $backgroundImg;
   background-size: cover;
-  background-repeat: no-repeat;
 }
+
+svg{
+  border: none;
+  outline: none;
+}
+
+.app {
+  background-color: $primaryColor;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(5rem, 15vw, 15rem);
+
+}
+

@@ -1,0 +1,74 @@
+@use "./base" as *;
+
+.message-box {
+  @include min(60%, 90vh);
+  @include max(60%, 90vh);
+  background-color: white;
+  position: relative;
+  right: -15rem;
+  border: 4px solid $primaryColor;
+  border-radius: 30px;
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chatname {
+  @include min(100%, 5vh);
+  max-height: 5vh;
+  border-bottom: 3px solid $primaryColor;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: $secondColor;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+}
+
+.conversation-box {
+  @include min(100%, 60vh);
+  padding: 1.5rem;
+}
+
+.input-message-container {
+  @include min(100%, 15vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    @include min(95%, 13vh);
+    @include max(95%, 13vh);
+    border: 5px solid $primaryColor;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  
+}
+
+.message-input {
+  @include min(85%, 7vh);
+  @include max(85%, 7vh);
+  border-bottom: 2px solid $primaryColor;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.send-btn{
+  @include min(10%, 10vh);
+  @include max(10%, 10vh);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $primaryColor;
+}

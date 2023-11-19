@@ -6,15 +6,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "@/App";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
-import {Dashboard, Home} from "pages/Dashboard";
+import { Dashboard, Home } from "pages/Dashboard";
 import { MessagePanel } from "./pages/Messages";
-import {SearchBar} from "components/SearchBar";
+import { SearchBar } from "components/SearchBar";
 import ChatMessageList from "components/DirectMessage";
 import Channels from "components/Channels";
-import UserSettings from "./Components/UserSettings";
-
-
-
+import UserSettings from "pages/UserSettings";
+import PrivateRoute from "./Components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -31,26 +29,26 @@ const router = createBrowserRouter([
           },
           {
             path: "messenger",
-            element: <MessagePanel/>,
-            children:[
+            element: <MessagePanel />,
+            children: [
               {
                 path: "search",
-                element: <SearchBar/>,
+                element: <SearchBar />,
               },
               {
                 path: "message",
-                element: <ChatMessageList/>,
+                element: <ChatMessageList />,
               },
               {
                 path: "channels",
-                element: <Channels/>,
+                element: <Channels />,
               },
-            ]
+            ],
           },
           {
             path: "settings",
-            element: <UserSettings/>,
-          } 
+            element: <UserSettings />,
+          },
         ],
       },
     ],
@@ -64,8 +62,6 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
 ]);
-
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

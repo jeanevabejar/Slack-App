@@ -90,6 +90,9 @@ svg {
   text-transform: uppercase;
   font-size: clamp(0.5rem, 0.404rem + 0.426vw, 1rem);
 }
+.login-form button:focus {
+  background-color: green;
+}
 
 .suggestion-container {
   min-width: 90%;
@@ -137,9 +140,9 @@ svg {
 
 .sign-up-container {
   min-width: 30%;
-  min-height: 70vh;
+  min-height: 60vh;
   max-width: 90%;
-  max-height: 70vh;
+  max-height: 60vh;
   background-color: #1f3b2f;
   display: flex;
   justify-content: center;
@@ -527,6 +530,23 @@ svg {
   min-width: 100%;
   min-height: 60vh;
   padding: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 1rem;
+  color: white;
+  overflow: auto;
+}
+
+.message-item {
+  min-width: 30%;
+  min-height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #495d54;
+  color: white;
+  border-radius: 30px;
 }
 
 .input-message-container {
@@ -625,19 +645,15 @@ svg {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.search-bar input {
+
+.search-input {
   min-width: 80%;
-  height: 4vh;
-  border-radius: 6px;
+  min-height: 4vh;
+  max-width: 80%;
+  max-height: 4vh;
+  border-radius: 30px;
   border: none;
   outline: none;
-}
-.search-bar button {
-  min-width: 20%;
-  border: none;
-  outline: none;
-  color: #1f3b2f;
-  background-color: transparent;
 }
 
 .search-result-container {
@@ -646,7 +662,7 @@ svg {
   max-width: 80%;
   max-height: 65vh;
   border: 1px solid white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 10px;
 }
 .search-result-container h3 {
@@ -654,4 +670,63 @@ svg {
   color: white;
   border-bottom: 1px solid white;
   padding: 0.5rem;
+}
+
+.result-container {
+  min-width: 100%;
+  min-height: 60vh;
+  max-width: 100%;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.result-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.result-container::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.result-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.list {
+  list-style: none;
+  font-size: 1rem;
+  color: white;
+}
+
+.settings-container {
+  min-width: 90%;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logout-container {
+  min-width: 90%;
+  min-height: 7vh;
+  display: flex;
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+.logout-btn {
+  min-width: 80%;
+  min-height: 5vh;
+  max-width: 80%;
+  max-height: 5vh;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  color: #1f3b2f;
 }/*# sourceMappingURL=App.css.map */

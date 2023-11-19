@@ -1,28 +1,108 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "assets/logo.png";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import Input from "components/Input";
 import Button from "components/Button";
-
+import useFetch from "components/CustomHook";
+import { setLocalStorage } from '@/Utils';
+import { toastSuccess } from "@/Utils";
+import { toastError } from "../../Utils/toastify";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setInput((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const { data, loading, error, response, fetchData } = useFetch();
+
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const url = "http://206.189.91.54/api/v1/auth/sign_in";
+    const config = {
+      method: "POST",
+      body: {
+        email: input.email,
+        password: input.password,
+      },
+    };
+
+    fetchData(url, config);
+  };
+
+  useEffect(() => {
+    if (!loading && !error && data) {
+      console.log("Data has changed, processing...");
+      console.log(data);
+      console.log(response);
+
+      const headerData = {
+        uid: response.headers.get("uid"),
+        "access-token": response.headers.get("access-token"),
+        expiry: response.headers.get("expiry"),
+        client: response.headers.get("client"),
+      };
+
+      if (response.status === 200) {
+        console.log("Successful Login");
+        toastSuccess("Successful Login")
+        setLocalStorage("headerData", headerData)
+        navigate("/dashboard/home");
+      } else if (response.status !== 200) {
+        toastError(data.errors.full_messages[0])
+        console.log(data);
+        console.log(data.errors.full_messages[0]);
+      }
+
+      setInput({
+        email: "",
+        password: "",
+      });
+    }
+  }, [data, loading, error, response, navigate]);
+
+
   return (
-    <div className="sign-in-page" >
-    <div className="login-container">
-      <img src={logo} alt="FroggyLogo" className="login-logo" />
-      <Form className="login-form" action="/dashboard">
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Button type="submit" text={"Log In"}/>
-      </Form>
-      <div className="suggestion-container">
-        <h3>Don't have account?</h3>
-        <Link to="/signup" className="sign-up-btn">Create</Link>
+    <div className="sign-in-page">
+      <div className="login-container">
+        <img src={logo} alt="FroggyLogo" className="login-logo" />
+        <Form className="login-form" onSubmit={handleSubmit}>
+          <Input
+            name="email"
+            value={input.email}
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+          />
+          <Input
+            name="password"
+            value={input.password}
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
+          <Button type="submit" text="Log In" />
+        </Form>
+        <div className="suggestion-container">
+          <h3>Don't have account?</h3>
+          <Link to="/signup" className="sign-up-btn">
+            Create
+          </Link>
+        </div>
       </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Login
-
+export default Login;

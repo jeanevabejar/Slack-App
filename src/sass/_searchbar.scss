@@ -12,28 +12,25 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 
-  input {
-    min-width: 80%;
-    height: 4vh;
-    border-radius: 6px;
+
+}
+
+ .search-input {
+    @include min(80%, 4vh);
+    @include max(80%, 4vh);
+    border-radius: 30px;
     border: none;
     outline: none;
+    
   }
 
-  button {
-    min-width: 20%;
-    border: none;
-    outline: none;
-    color: $primaryColor;
-    background-color: transparent;
-  }
-}
 .search-result-container {
   @include min(80%, 65vh);
   @include max(80%, 65vh);
   border: 1px solid white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 10px;
+
 
   h3{
     font-size: 1rem;
@@ -41,4 +38,32 @@
     border-bottom: 1px solid white;padding: 0.5rem;
   }
   
+}
+
+.result-container{
+  @include min(100%, 60vh);
+  @include max(100%, 60vh);
+  overflow: auto;
+
+
+}
+
+.result-container::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.result-container::-webkit-scrollbar-thumb {
+  background-color: white; 
+  border-radius: 10px;
+}
+
+.result-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.list{
+list-style: none;
+font-size: 1rem;
+color: white;
+
 }

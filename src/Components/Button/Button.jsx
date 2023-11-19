@@ -1,10 +1,11 @@
+import React, { forwardRef } from 'react';
 
-import React, { forwardRef } from 'react'
-
-const Button = forwardRef(( {className, text, ...props}, ref) => {
+const Button = forwardRef(({ className, children, text, ...props }, ref) => {
   return (
-<button ref={ref}  className={className} {...props}>{text}</button>
-  )
-}) 
+    <button ref={ref} className={className} {...props}>
+      {children}{text}
+    </button>
+  );
+});
 
-export default Button
+export default Button;

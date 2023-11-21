@@ -9,15 +9,17 @@ export const setLocalStorage = (key, value) => {
 }
 
 export const getLocalStorage = (key) => {
-    try {
-    JSON.parse(localStorage.getItem(key)) || null;
-    } catch{
-        console.error('Error getting local storage item:', error);
-        return null;
-    }
-}
+  try {
+    const items = localStorage.getItem(key) || null;
+    return JSON.parse(items);
+  } catch (error) {
+    console.error('Error getting local storage item:', error);
+    return null;
+  }
+};
 
-export const removeLocalStorage = () => {
+
+export const removeLocalStorage = (key) => {
     try {
         localStorage.removeItem(key);
       } catch (error) {

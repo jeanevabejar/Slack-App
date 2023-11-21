@@ -8,12 +8,12 @@ import Button from "components/Button";
 import TooltipContainer from "components/Tooltip";
 
 const Navbar = () => {
-  const location = useLocation(); ///give the exact url where u are
-  const navigate = useNavigate(); ///give you access to other url
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
 
   const isActive = (path) => {
-    console.log("Current Path:", location.pathname);
-    console.log("Specified Path:", path);
+    // console.log("Current Path:", location.pathname);
+    // console.log("Specified Path:", path);
     return location.pathname === path;
   };
 

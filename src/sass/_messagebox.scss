@@ -31,6 +31,25 @@
 .conversation-box {
   @include min(100%, 60vh);
   padding: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+   flex-direction: column-reverse;
+   gap: 1rem;
+   color: white;
+   overflow: auto;
+}
+
+.message-item{
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  background-color: $secondColor;
+  color: white;
+  border-radius: 30px;
 }
 
 .input-message-container {

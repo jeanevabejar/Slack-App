@@ -9,8 +9,8 @@
   background-image: $backgroundImg;
 }
 .sign-up-container {
-  @include min(30%, 70vh);
-  @include max(90%, 70vh);
+  @include min(30%, 60vh);
+  @include max(90%, 60vh);
   background-color: $primaryColor;
   display: flex;
   justify-content: center;

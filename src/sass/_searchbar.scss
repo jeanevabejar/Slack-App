@@ -11,34 +11,105 @@
   justify-content: space-between;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-
-  input {
-    min-width: 80%;
-    height: 4vh;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-  }
-
-  button {
-    min-width: 20%;
-    border: none;
-    outline: none;
-    color: $primaryColor;
-    background-color: transparent;
-  }
 }
+
+.search-input {
+  @include min(80%, 4vh);
+  @include max(80%, 4vh);
+  border-radius: 30px;
+  border: none;
+  outline: none;
+}
+
 .search-result-container {
   @include min(80%, 65vh);
   @include max(80%, 65vh);
   border: 1px solid white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 10px;
 
-  h3{
+  h3 {
     font-size: 1rem;
     color: white;
-    border-bottom: 1px solid white;padding: 0.5rem;
+    border-bottom: 1px solid white;
+    padding: 0.5rem;
   }
+}
+
+.result-container {
+  @include min(100%, 60vh);
+  @include max(100%, 60vh);
+  overflow: auto;
+
+  h4 {
+    font-size: 1rem;
+    color: white;
+    border-bottom: 1px solid white;
+    padding: 0.5rem;
+  }
+}
+
+.result-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.result-container::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.result-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.selected-list {
+  list-style: none;
+  font-size: 1rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+
+
+  li {
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  button {
+    width: 15%;
+    height: 4vh;
+    border-radius: 50%;
+    background-color: $primaryColor;
+    color: white;
+    border: none;
+    outline: none;
+  }
+  button:focus {
+    background-color: green;
   
+  }
+}
+
+.latest-list {
+  list-style: none;
+  font-size: 1rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  text-overflow: ellipsis;
+}
+
+.spinner {
+  width: 10rem;
+  position: relative;
+  left: 2.5rem;
+  bottom: -5rem;
+  opacity: 0.3;
 }

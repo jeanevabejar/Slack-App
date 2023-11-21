@@ -1,6 +1,8 @@
-export { loader }  from './animations';
+export { loader } from "./animations";
 export {
-    setLocalStorage,
-    getLocalStorage,
-    removeLocalStorage
-} from './localstorage';
+  setLocalStorage,
+  getLocalStorage,
+  removeLocalStorage,
+} from "./localstorage";
+
+export { toastInfo, toastSuccess, toastWarning, toastError } from "./toastify";

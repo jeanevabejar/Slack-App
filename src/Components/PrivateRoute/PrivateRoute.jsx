@@ -7,12 +7,13 @@ const PrivateRoute = ({children}) => {
   const currentUser = getLocalStorage("headerData");
 
   useEffect(()=>{
-    console.log(currentUser)
-  })
-
-  if (currentUser === null) {
+    console.log(currentUser);
+    if (currentUser === null) {
     return navigate("/login");
   }
+  },[])
+
+  
   return <>{children}</>
 };
 

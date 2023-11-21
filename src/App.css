@@ -321,6 +321,8 @@ svg {
 .nav-extension {
   min-width: 20%;
   min-height: 90vh;
+  max-width: 20%;
+  max-height: 90vh;
   background-color: #495d54;
   border-radius: 30px;
   position: absolute;
@@ -333,6 +335,8 @@ svg {
 .inner-container {
   min-width: 90%;
   min-height: 85vh;
+  max-width: 90%;
+  max-height: 85vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -485,6 +489,10 @@ svg {
   border: none;
 }
 
+.home-btn:focus {
+  background-color: green;
+}
+
 .message-panel {
   min-width: 100%;
   min-height: 100vh;
@@ -532,15 +540,18 @@ svg {
   padding: 1.5rem;
   display: flex;
   align-items: flex-end;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 1rem;
   color: white;
   overflow: auto;
 }
 
 .message-item {
-  min-width: 30%;
-  min-height: 3vh;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -679,6 +690,12 @@ svg {
   max-height: 60vh;
   overflow: auto;
 }
+.result-container h4 {
+  font-size: 1rem;
+  color: white;
+  border-bottom: 1px solid white;
+  padding: 0.5rem;
+}
 
 .result-container::-webkit-scrollbar {
   width: 8px;
@@ -693,26 +710,87 @@ svg {
   background-color: transparent;
 }
 
-.list {
+.selected-list {
   list-style: none;
   font-size: 1rem;
   color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+.selected-list li {
+  max-width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selected-list button {
+  width: 15%;
+  height: 4vh;
+  border-radius: 50%;
+  background-color: #1f3b2f;
+  color: white;
+  border: none;
+  outline: none;
+}
+.selected-list button:focus {
+  background-color: green;
+}
+
+.latest-list {
+  list-style: none;
+  font-size: 1rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  text-overflow: ellipsis;
+}
+
+.spinner {
+  width: 10rem;
+  position: relative;
+  left: 2.5rem;
+  bottom: -5rem;
+  opacity: 0.3;
 }
 
 .settings-container {
   min-width: 90%;
   min-height: 85vh;
+  max-width: 90%;
+  max-height: 85vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.user-container {
+  min-width: 90%;
+  min-height: 77vh;
+  max-width: 90%;
+  max-height: 77vh;
+  padding: 2rem;
+  color: white;
+  text-transform: capitalize;
+}
+.user-container h1 {
+  font-size: clamp(0.8rem, 2vw, 2rem);
+  opacity: 0.8;
 }
 
 .logout-container {
   min-width: 90%;
   min-height: 7vh;
+  max-width: 90%;
+  max-height: 7vh;
   display: flex;
-  align-self: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .logout-btn {

@@ -3,9 +3,8 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import Button from "components/Button";
 import Input from "components/Input";
 import logo from "assets/logo.png";
-import Preloader from "components/Preloader";
 import { toastError, toastSuccess } from "@/Utils";
-import useFetch from "components/CustomHook";
+import {useFetch} from "components/CustomHook";
 
 const Signup = () => {
   const navigate = useNavigate();

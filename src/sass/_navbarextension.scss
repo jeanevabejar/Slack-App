@@ -2,6 +2,7 @@
 
 .nav-extension {
   @include min(20%, 90vh);
+  @include max(20%, 90vh);
   background-color: $secondColor;
   border-radius: 30px;
   position: absolute;
@@ -9,14 +10,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
 }
 
 .inner-container {
   @include min(90%, 85vh);
+  @include max(90%, 85vh);
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+
 }
 
 .messenger-nav-container {

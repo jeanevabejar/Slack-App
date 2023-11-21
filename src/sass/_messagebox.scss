@@ -33,14 +33,16 @@
   padding: 1.5rem;
   display: flex;
   align-items: flex-end;
-   flex-direction: column;
+   flex-direction: column-reverse;
    gap: 1rem;
    color: white;
    overflow: auto;
 }
 
 .message-item{
-  @include min(30%, 3vh);
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

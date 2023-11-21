@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // pages
 import App from "@/App";
@@ -13,6 +15,7 @@ import ChatMessageList from "components/DirectMessage";
 import Channels from "components/Channels";
 import UserSettings from "pages/UserSettings";
 import PrivateRoute from "./Components/PrivateRoute";
+import { SelectedOptionsProvider } from 'components/CustomHook';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +68,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SelectedOptionsProvider>
+          <RouterProvider router={router} />
+    </SelectedOptionsProvider>
+    <ToastContainer />
   </React.StrictMode>
 );

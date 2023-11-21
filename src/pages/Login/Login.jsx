@@ -3,10 +3,10 @@ import logo from "assets/logo.png";
 import { Form, Link, useNavigate } from "react-router-dom";
 import Input from "components/Input";
 import Button from "components/Button";
-import useFetch from "components/CustomHook";
-import { setLocalStorage } from '@/Utils';
-import { toastSuccess } from "@/Utils";
-import { toastError } from "../../Utils/toastify";
+import {useFetch} from "components/CustomHook";
+import { setLocalStorage, toastSuccess, toastError } from '@/Utils';
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -58,6 +58,7 @@ const Login = () => {
         console.log("Successful Login");
         toastSuccess("Successful Login")
         setLocalStorage("headerData", headerData)
+        setLocalStorage("currentUser", data.data)
         navigate("/dashboard/home");
       } else if (response.status !== 200) {
         toastError(data.errors.full_messages[0])

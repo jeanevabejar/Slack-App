@@ -15,7 +15,7 @@ const useFetch = () => {
           "Content-Type": "application/json",
           ...(config.headers || {}),
         },
-        body: config.body ? JSON.stringify(config.body) : undefined,
+        body: config.body ? JSON.stringify(config.body) : null,
       });
     
       setResponse(response)

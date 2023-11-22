@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { HiOutlineUserCircle } from "react-icons/hi";
+
 import Input from "components/Input";
 import Button from "components/Button";
 import { BiSolidSend } from "react-icons/bi";
-import { useFetch, useSelectedOptions } from "components/CustomHook";
+import { useFetch, useSelectedUsers } from "components/CustomHook";
 import { getLocalStorage, toastSuccess } from "@/Utils";
+import profile from "assets/profile.png";
 
 const MessageBox = () => {
   const [input, setInput] = useState({ message: "" });
   const { data, loading, error, fetchData } = useFetch();
-  const [selectedOptions] = useSelectedOptions();
+  const [selectedUsers] = useSelectedUsers();
   const [key, setKey] = useState();
+  const [userData, setUserData] = useState();
 
   const handleChange = (e) => {
     setInput((prev) => ({
@@ -21,44 +23,53 @@ const MessageBox = () => {
 
   const handleSubmit = async () => {
     const userData = getLocalStorage("headerData");
-    const key_id = key;
 
     const url = "http://206.189.91.54/api/v1/messages";
     const config = {
       method: "POST",
       headers: { ...userData },
       body: {
-        receiver_id: key_id,
+        receiver_id: key,
         receiver_class: "User",
         body: input.message,
       },
     };
 
     fetchData(url, config);
-    console.log(key_id);
-     console.log("sel",selectedOptions)
+    console.log("sel", selectedUsers);
+    console.log(key);
   };
 
   useEffect(() => {
-    if (!loading && !error && data && selectedOptions) {
-      toastSuccess("Message Sent");
-      console.log("mes", data.data);
-      const userId = selectedOptions.flatMap((items) => [items.value]);
-    setKey(userId[0])
-      setInput({ message: "" });
-    }
-  }, [data, loading, error, selectedOptions]); 
+    console.log("mes", data);
+    setUserData(data);
+    setInput({ message: "" });
+    setKey(selectedUsers.value);
+    console.log(selectedUsers.label);
+  }, [data, selectedUsers]);
 
+  useEffect(() => {
+    if (!loading && !error && data) {
+      toastSuccess("Message Sent");
+    }
+  }, [loading, error]);
 
   return (
     <div className="message-box">
       <div className="chatname">
-        <HiOutlineUserCircle size={35} />
-        {selectedOptions.map((names)=>{
-          <h3>{names.label}</h3>
-        })}
+        {selectedUsers ? (
+          <h3>
+            <img src={profile} alt="profile.jpg" />@
+            {selectedUsers.label ? selectedUsers.label.split("@")[0] : ""}
+          </h3>
+        ) : (
+          <h3>
+            <img src={profile} alt="default-profile.jpg" />
+            @User
+          </h3>
+        )}
       </div>
-      <ConversationPanel selectedOptions={selectedOptions} />
+      <ConversationPanel selectedUsers={selectedUsers} userData={userData} />
       <div className="input-message-container">
         <div>
           <Input
@@ -80,14 +91,16 @@ const MessageBox = () => {
   );
 };
 
-const ConversationPanel = ({ selectedOptions }) => {
+const ConversationPanel = ({ selectedUsers, userData }) => {
   const { data, loading, error, fetchData } = useFetch();
-
+  const [conversation, setConversation] = useState();
+  const currentUser = getLocalStorage("currentUser");
+  const [received, setReceived] = useState();
 
   const fetchMessage = async () => {
-    const userId = selectedOptions.flatMap((items) => [items.value]) || [];
-    const key_id = userId[0] || [];
-    const userData = getLocalStorage("headerData");
+    const userId = selectedUsers.value || [];
+    const key_id = userId || [];
+    const userData = getLocalStorage("headerData") || [];
 
     const keyId = key_id;
     const url = `http://206.189.91.54/api/v1/messages?receiver_id=${keyId}&receiver_class=User`;
@@ -97,26 +110,45 @@ const ConversationPanel = ({ selectedOptions }) => {
     };
 
     fetchData(url, config);
+    console.log("raw",data);
+    setReceived(data)
   };
 
   useEffect(() => {
     fetchMessage();
-  }, []);
+  }, [selectedUsers, userData, received]);
 
   useEffect(() => {
-    if (!loading && !error && data) {
-    
-      console.log("res", data.data);
-  
+    if (!loading && !error && data && data.data) {
+      const flatData = data.data.map((message) => ({
+        receiver: message.receiver.email,
+        body: message.body,
+        created_at: message.created_at,
+        sender: message.sender.email,
+      }));
+
+      const sortMessages = flatData.sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      );
+
+      console.log("sort", sortMessages);
+      setConversation(sortMessages);
     }
   }, [data, loading, error]);
 
   return (
     <>
       <div className="conversation-box">
-        {data && data.data && data.data.length > 0 ? (
-          data.data.map((message, index) => (
-            <p key={index} className="message-item">
+        {conversation && conversation.length > 0 ? (
+          conversation.map((message, index) => (
+            <p
+              key={index}
+              className={
+                message.receiver === currentUser.email
+                  ? "received-item"
+                  : "message-item"
+              }
+            >
               {message.body}
             </p>
           ))

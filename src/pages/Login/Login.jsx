@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import logo from "assets/logo.png";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import Input from "components/Input";
 import Button from "components/Button";
 import {useFetch} from "components/CustomHook";
 import { setLocalStorage, toastSuccess, toastError } from '@/Utils';
+import { getLocalStorage } from '@/Utils';
 
 
 
@@ -24,12 +25,20 @@ const Login = () => {
 
   const { data, loading, error, response, fetchData } = useFetch();
 
+const currentUser = getLocalStorage("headerData");
 
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const user = getLocalStorage("currentUser") || navigate("/login");
+    const userName = user ? user.email.split("@")[0] : null;
 
-    const url = "http://206.189.91.54/api/v1/auth/sign_in";
+     if(currentUser){
+      toastError(`${userName.toUpperCase()}, Already Login`)
+      navigate("/dashboard/home")
+    } else{
+      const url = "http://206.189.91.54/api/v1/auth/sign_in";
     const config = {
       method: "POST",
       body: {
@@ -39,6 +48,9 @@ const Login = () => {
     };
 
     fetchData(url, config);
+    }
+
+   
   };
 
   useEffect(() => {

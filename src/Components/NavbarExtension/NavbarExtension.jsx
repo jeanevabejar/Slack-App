@@ -15,7 +15,6 @@ const NavbarExtension = () => {
           <Outlet />
         </div>
       </div>
-      <TooltipContainer />
     </>
   );
 };

@@ -98,10 +98,7 @@
 }
 
 
-.dm-list{
-  @include min(80%, 75vh);
-  @include max(80%, 75vh);
-}
+
 
 .channels-list{
   @include min(80%, 75vh);

@@ -7,6 +7,7 @@ import { getLocalStorage, setLocalStorage, toastInfo, toastSuccess } from "@/Uti
 
 
 const SearchList = ({ users, loading, error, selectedOptions }) => {
+  
   const handleClick = (option) => {
     console.log("Clicked on:", option);
     const friends = getLocalStorage("friendList") || [];
@@ -18,8 +19,11 @@ const SearchList = ({ users, loading, error, selectedOptions }) => {
       const updatedFriends = [...friends, option];
       toastSuccess("Successfully added to friends.");
       setLocalStorage("friendList", updatedFriends);
-    } else {
+    } else if (existingFriend){
       toastInfo("This user is already in your friends list.");
+    } else {
+      setLocalStorage("friendList", option);
+      toastSuccess("Successfully added to friends.");
     }
   };
   
@@ -42,7 +46,7 @@ const SearchList = ({ users, loading, error, selectedOptions }) => {
         <div className="result-container">
           {loading && <img className="spinner" src={spinner} />}
           {error && <p>Error: {error.message}</p>}
-          {selectedOptions.length > 0 && (
+          {selectedOptions && selectedOptions.length > 0 && (
             <>
               <h4>Selected Options:</h4>
               <ul className="selected-list">

@@ -2,23 +2,21 @@ import React from "react";
 import { MessageBox } from "pages/Messages";
 import Button from "components/Button";
 import { GiExitDoor } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
-import { removeLocalStorage, getLocalStorage } from '@/Utils';
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { removeLocalStorage, getLocalStorage } from "@/Utils";
 import { toastInfo } from "@/Utils";
 
 const UserSettings = () => {
-const navigate = useNavigate();
-const currentUser = getLocalStorage("currentUser") || navigate("/login");
-const userName = currentUser.email.split("@");
-  const handleLogout =()=>{
+  const navigate = useNavigate();
+  const currentUser = getLocalStorage("currentUser") || navigate("/login");
+  const userName = currentUser ? currentUser.email.split("@") : null;
+  const handleLogout = () => {
     removeLocalStorage("headerData");
-    removeLocalStorage("currentUser")
-    toastInfo("Successful Logout")
-    console.log("you are logout")
-    navigate("/login")
-  }
-
-
+    removeLocalStorage("currentUser");
+    toastInfo("Successful Logout");
+    console.log("you are logout");
+    navigate("/login");
+  };
 
   return (
     <>

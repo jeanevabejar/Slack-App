@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import AsynchSelect from "react-select/async";
-import {useFetch} from "components/CustomHook";
+import { useFetch } from "components/CustomHook";
 import { getLocalStorage } from "@/Utils";
 import SearchList from "./SearchList";
-import { useSelectedOptions } from "components/CustomHook";
-
 
 const SearchBar = () => {
   const { data, loading, error, fetchData } = useFetch();
   const [users, setUsers] = useState([]);
   const [options, setOptions] = useState(null);
-  const [selectedOptions, updateSelectedOptions] = useSelectedOptions();
+  const [selectedOptions, setSelectedOptions] = useState();
 
   const searchHandler = async () => {
     const userData = getLocalStorage("headerData");
@@ -34,14 +32,12 @@ const SearchBar = () => {
       setOptions(
         data.data.flatMap((users) => [{ value: users.id, label: users.email }])
       );
-      // console.log(data.data.flatMap((users) => [users.email]));
     }
   }, [data]);
 
   const handleChange = (selectedOption) => {
     console.log("changes", selectedOption);
-    updateSelectedOptions(selectedOption);
-   
+    setSelectedOptions(selectedOption);
   };
 
   const loadOptions = (searchValue, callback) => {

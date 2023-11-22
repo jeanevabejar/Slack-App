@@ -53,7 +53,6 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <TooltipContainer />
     </>
   );
 };

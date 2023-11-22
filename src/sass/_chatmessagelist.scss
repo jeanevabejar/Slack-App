@@ -1,0 +1,47 @@
+@use "./base" as *;
+
+.friend-list-container {
+  @include min(80%, 75vh);
+  @include max(80%, 75vh);
+  padding: 0.5rem;
+
+  h1 {
+    color: white;
+    border-bottom: 2px solid white;
+    font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+  }
+}
+
+.friend-list-section {
+  @include min(100%, 70vh);
+  @include max(100%, 70vh);
+  overflow: auto;
+  list-style: none;
+  padding-top: 1rem;
+
+  button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    text-transform: capitalize;
+    padding: 0.5rem;
+    font-size: clamp(0.5rem, 1vw, 1rem);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+
+    img {
+      width: 2rem;
+      border-radius: 50px;
+    }
+  }
+
+  button:focus {
+    background-color: rgba($color: white, $alpha: 0.3);
+    transition: 1s;
+    border-radius: 10px;
+  }
+}

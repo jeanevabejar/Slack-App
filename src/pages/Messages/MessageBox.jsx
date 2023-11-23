@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import { BiSolidSend } from 'react-icons/bi';
+import { useFetch, useSelectedUsers } from 'components/CustomHook';
+import { getLocalStorage, toastSuccess } from '@/Utils';
+import profile from 'assets/profile.png';
 
-import Input from "components/Input";
-import Button from "components/Button";
-import { BiSolidSend } from "react-icons/bi";
-import { useFetch, useSelectedUsers } from "components/CustomHook";
-import { getLocalStorage, toastSuccess } from "@/Utils";
-import profile from "assets/profile.png";
-
+// Component for the message box
 const MessageBox = () => {
-  const [input, setInput] = useState({ message: "" });
+  // State for message input, user data, and selected user
+  const [input, setInput] = useState({ message: '' });
   const { data, loading, error, fetchData } = useFetch();
   const [selectedUsers] = useSelectedUsers();
   const [key, setKey] = useState();
   const [userData, setUserData] = useState();
-  const [receiverClass, setReceiverClass]= useState();
+  const [receiverClass, setReceiverClass] = useState();
 
+  // Handle change in the message input
   const handleChange = (e) => {
     setInput((prev) => ({
       ...prev,
@@ -22,58 +24,54 @@ const MessageBox = () => {
     }));
   };
 
+  // Handle message submission
   const handleSubmit = async () => {
-    const userData = getLocalStorage("headerData");
+    const userData = getLocalStorage('headerData');
 
-    const url = "http://206.189.91.54/api/v1/messages";
+    const url = 'http://206.189.91.54/api/v1/messages';
     const config = {
-      method: "POST",
+      method: 'POST',
       headers: { ...userData },
       body: {
         receiver_id: key,
         receiver_class: receiverClass,
-        body : input.message,
+        body: input.message,
       },
     };
 
     fetchData(url, config);
-    console.log("sel", selectedUsers);
-    console.log(key);
   };
 
+  // Effect to update user data and input on changes
   useEffect(() => {
-    console.log("mes", data);
     setUserData(data);
-    setInput({ message: "" });
+    setInput({ message: '' });
     setKey(selectedUsers.value);
-    setReceiverClass(selectedUsers.class)
-    console.log(selectedUsers.class);
+    setReceiverClass(selectedUsers.class);
   }, [data, selectedUsers]);
 
+  // Effect to show success message after message is sent
   useEffect(() => {
     if (!loading && !error && data) {
-      toastSuccess("Message Sent");
+      toastSuccess('Message Sent');
     }
   }, [loading, error]);
 
+  // JSX structure for the message box
   return (
     <div className="message-box">
       <div className="chatname">
-        {selectedUsers ? (
-          <h3>
-            <img src={profile} alt="profile.jpg" />@
-            {selectedUsers.label ? selectedUsers.label.split("@")[0] : ""}
-          </h3>
-        ) : (
-          <h3>
-            <img src={profile} alt="default-profile.jpg" />
-            @User
-          </h3>
-        )}
+        {/* Display selected user's profile image and username */}
+        <h3>
+          <img src={profile} alt="profile.jpg" />
+          @{selectedUsers ? selectedUsers.label?.split('@')[0] : 'User'}
+        </h3>
       </div>
+      {/* Display conversation panel and input message container */}
       <ConversationPanel selectedUsers={selectedUsers} userData={userData} />
       <div className="input-message-container">
         <div>
+          {/* Input field for typing the message */}
           <Input
             type="text"
             className="message-input"
@@ -82,6 +80,7 @@ const MessageBox = () => {
             value={input.message}
             onChange={handleChange}
           />
+          {/* Button to send the message */}
           <Button
             text={<BiSolidSend size={50} />}
             className="send-btn"
@@ -93,36 +92,40 @@ const MessageBox = () => {
   );
 };
 
+// Component for displaying the conversation panel
 const ConversationPanel = ({ selectedUsers, userData }) => {
   const { data, loading, error, fetchData } = useFetch();
   const [conversation, setConversation] = useState();
-  const currentUser = getLocalStorage("currentUser");
+  const currentUser = getLocalStorage('currentUser');
   const [received, setReceived] = useState();
 
+  // Fetch messages for the selected user
   const fetchMessage = async () => {
     const userId = selectedUsers.value || [];
     const key_id = userId || [];
-    const userData = getLocalStorage("headerData") || [];
+    const userData = getLocalStorage('headerData') || [];
     const selectedClass = selectedUsers.class;
 
     const keyId = key_id;
     const url = `http://206.189.91.54/api/v1/messages?receiver_id=${keyId}&receiver_class=${selectedClass}`;
     const config = {
-      method: "GET",
+      method: 'GET',
       headers: { ...userData },
     };
 
     fetchData(url, config);
-    console.log("raw",data);
-    setReceived(data)
+    setReceived(data);
   };
 
+  // Effect to fetch messages when selected user or user data changes
   useEffect(() => {
     fetchMessage();
   }, [selectedUsers, userData, received]);
 
+  // Effect to update conversation on changes in fetched data
   useEffect(() => {
     if (!loading && !error && data && data.data) {
+      // Flatten and sort messages by date
       const flatData = data.data.map((message) => ({
         receiver: message.receiver.email,
         channel: message.receiver.name,
@@ -135,29 +138,31 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
       );
 
-      console.log("sort", sortMessages);
-      console.log(data)
+      // Update conversation state
       setConversation(sortMessages);
     }
   }, [data, loading, error]);
 
+  // JSX structure for the conversation panel
   return (
     <>
       <div className="conversation-box">
         {conversation && conversation.length > 0 ? (
+          // Display messages in conversation box
           conversation.map((message, index) => (
             <p
               key={index}
               className={
-                message.sender === currentUser.email 
-                  ? "message-item"
-                  : "received-item"
+                message.sender === currentUser.email
+                  ? 'message-item'
+                  : 'received-item'
               }
             >
               {message.body}
             </p>
           ))
         ) : (
+          // Display message if no messages available
           <p>No messages available</p>
         )}
       </div>

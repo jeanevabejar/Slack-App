@@ -5,38 +5,35 @@ import profile from "assets/profile.png";
 import { useSelectedUsers } from 'components/CustomHook';
 
 const ChatMessageList = () => {
+  // Retrieve friend list from local storage or default to an empty array
   const friends = getLocalStorage("friendList") || [];
-  const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
 
-  const handleClick = (option)=>{
-console.log("target",option );
-updateSelectedUsers(option)
+  // Use the custom hook to get the selected users and the function to update them
+  const [updateSelectedUsers] = useSelectedUsers();
 
-  }
+  // Handle click event for selecting a friend
+  const handleClick = (friend) => { 
+    // Update the selected users with the clicked friend
+    updateSelectedUsers(friend);
+  };
 
-
-
-  useEffect(() => {
-   
-
-  }, []);
 
   return (
-    <>
-      <div className="friend-list-container">
-        <h1>Friend List</h1>
-        <ul className="friend-list-section">
-          {friends && friends.length >= 0 && friends.map((option, index) => (
-            <li key={index}>
-              <Button onClick={()=>handleClick(option)}>
-                <img src={profile} alt="profile.jpg" />
-                @{option.label.split("@")[0]}
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <div className="friend-list-container">
+      <h1>Friend List</h1>
+      <ul className="friend-list-section">
+        {friends && friends.length >= 0 && friends.map((friend, index) => (
+          <li key={index}>
+            {/* Button component with a click handler to select a friend */}
+            <Button onClick={() => handleClick(friend)}>
+              {/* Display friend's profile image and username */}
+              <img src={profile} alt="profile.jpg" />
+              @{friend.label.split("@")[0]}
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import TooltipContainer from "components/Tooltip";
 import { Outlet} from "react-router-dom";
 import MessengerNavbar from "components/MessengerNavbar";
 

@@ -37,8 +37,13 @@ const SearchBar = () => {
 
   const handleChange = (selectedOption) => {
     console.log("changes", selectedOption);
-    setSelectedOptions(selectedOption);
+  
+
+    const modifiedOption = { ...selectedOption, class: "User" };
+  
+    setSelectedOptions(modifiedOption);
   };
+  
 
   const loadOptions = (searchValue, callback) => {
     setTimeout(() => {
@@ -57,7 +62,6 @@ const SearchBar = () => {
       <AsynchSelect
         className="search-input"
         loadOptions={loadOptions}
-        isMulti
         onChange={handleChange}
         placeholder="search..."
       />

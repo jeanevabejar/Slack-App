@@ -412,13 +412,6 @@ svg {
   transform: scale(1);
 }
 
-.channels-list {
-  min-width: 80%;
-  min-height: 75vh;
-  max-width: 80%;
-  max-height: 75vh;
-}
-
 .dashboard-page {
   min-width: 100%;
   min-height: 100vh;
@@ -886,4 +879,161 @@ svg {
   background-color: rgba(255, 255, 255, 0.3);
   transition: 1s;
   border-radius: 10px;
+}
+
+.channels-container {
+  min-width: 80%;
+  min-height: 75vh;
+  max-width: 80%;
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto;
+  padding: 0.5rem;
+  gap: 1rem;
+  border-bottom: 3px solid white;
+  border-bottom-style: dashed;
+}
+
+.channels-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.channels-container::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.dropdown-btn {
+  min-width: 60%;
+  min-height: 3vh;
+  max-width: 60%;
+  max-height: 3vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  color: #1f3b2f;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+  font-weight: bold;
+}
+
+.friends-dropdown {
+  min-width: 100%;
+  min-height: 30vh;
+  max-width: 100%;
+  max-height: 30vh;
+  border: 3px solid white;
+  border-style: dashed;
+  padding: 0.5rem;
+}
+.friends-dropdown h1 {
+  font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+  color: white;
+}
+
+.channel-form {
+  min-width: 100%;
+  min-height: 25vh;
+  max-width: 100%;
+  max-height: 25vh;
+  border-top: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.channel-form button {
+  min-width: 40%;
+  min-height: 3vh;
+  max-width: 40%;
+  max-height: 3vh;
+  border-radius: 20px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #1f3b2f;
+}
+.channel-form button:focus {
+  background-color: green;
+  color: white;
+  transition: 1s;
+}
+.channel-form .input-form {
+  min-width: 95%;
+  min-height: 3vh;
+  max-width: 95%;
+  max-height: 3vh;
+  border-radius: 5px;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+.channel-form .user-dropdown {
+  min-width: 100%;
+  min-height: 13vh;
+  max-width: 100%;
+  max-height: 13vh;
+  box-shadow: 0 10px 6px 0px rgba(0, 0, 0, 0.38) inset;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 0.5rem;
+}
+.channel-form .user-dropdown div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem;
+  border-bottom: 3px solid #495d54;
+}
+.channel-form .user-dropdown label {
+  list-style: none;
+  color: white;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+}
+.channel-form .user-dropdown input {
+  width: 2vh;
+}
+.channel-form .user-dropdown::-webkit-scrollbar {
+  width: 1%;
+}
+
+.highlight {
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: 1s;
+  border-radius: 5px;
+}
+
+.channel-list-container {
+  border-top: 3px solid white;
+  border-top-style: dashed;
+  min-width: 100%;
+  min-height: 60vh;
+  max-width: 100%;
+  max-height: 60vh;
+  padding: 1rem;
+  overflow: auto;
+}
+.channel-list-container li {
+  width: 100%;
+  height: 5vh;
+  list-style: none;
+  color: white;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+.channel-list-container li img {
+  width: 10%;
+  border-radius: 50%;
+}
+
+.channel-list-container::-webkit-scrollbar {
+  width: 1%;
 }/*# sourceMappingURL=App.css.map */

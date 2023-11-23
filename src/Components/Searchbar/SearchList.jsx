@@ -8,28 +8,28 @@ import { getLocalStorage, setLocalStorage, toastInfo, toastSuccess } from "@/Uti
 
 const SearchList = ({ users, loading, error, selectedOptions }) => {
   
-  const handleClick = (option) => {
-    console.log("Clicked on:", option);
+  const handleClick = (selectedOptions) => {
+    console.log("Clicked on:", selectedOptions);
     const friends = getLocalStorage("friendList") || [];
     console.log("Current Friends:", friends);
-    const existingFriend = friends.some((friend) => friend.value === option.value);
+    const existingFriend = friends.some((friend) => friend.value === selectedOptions.value);
     console.log("Existing Friend:", existingFriend);
   
     if (!existingFriend) {
-      const updatedFriends = [...friends, option];
+      const updatedFriends = [...friends, selectedOptions];
       toastSuccess("Successfully added to friends.");
       setLocalStorage("friendList", updatedFriends);
     } else if (existingFriend){
       toastInfo("This user is already in your friends list.");
     } else {
-      setLocalStorage("friendList", option);
+      setLocalStorage("friendList", selectedOptions);
       toastSuccess("Successfully added to friends.");
     }
   };
   
-  const removeFriend = (option) => {
+  const removeFriend = (selectedOptions) => {
     const friends = getLocalStorage("friendList") || [];
-    const existingFriendIndex = friends.findIndex((friend) => friend.value === option.value);
+    const existingFriendIndex = friends.findIndex((friend) => friend.value === selectedOptions.value);
   
     if (existingFriendIndex !== -1) {
       friends.splice(existingFriendIndex, 1);
@@ -46,23 +46,23 @@ const SearchList = ({ users, loading, error, selectedOptions }) => {
         <div className="result-container">
           {loading && <img className="spinner" src={spinner} />}
           {error && <p>Error: {error.message}</p>}
-          {selectedOptions && selectedOptions.length > 0 && (
+          {selectedOptions && (
             <>
               <h4>Selected Options:</h4>
               <ul className="selected-list">
-                {selectedOptions.map((option, index) => (
+                {
                   <>
-                    <li key={index}>{option.label}</li>{" "}
+                    <li >{selectedOptions.label}</li>
                     <Button
                       text={<IoMdPersonAdd size={20} />}
-                      onClick={() => handleClick(option)}
+                      onClick={() => handleClick(selectedOptions)}
                     />
                     <Button
                       text={<MdPersonRemoveAlt1 size={20} />}
-                    onClick={()=> removeFriend(option)}
+                    onClick={()=> removeFriend(selectedOptions)}
                     />
                   </>
-                ))}
+              }
               </ul>
             </>
           )}

@@ -3,14 +3,16 @@ import logo from "assets/logo.png";
 import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import Input from "components/Input";
 import Button from "components/Button";
-import {useFetch} from "components/CustomHook";
-import { setLocalStorage, toastSuccess, toastError } from '@/Utils';
-import { getLocalStorage } from '@/Utils';
-
-
+import { useFetch } from "components/CustomHook";
+import { setLocalStorage, toastSuccess, toastError } from "@/Utils";
+import { getLocalStorage } from "@/Utils";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const { data, loading, error, response, fetchData } = useFetch();
+
+  const currentUser = getLocalStorage("headerData");
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -23,34 +25,33 @@ const Login = () => {
     }));
   };
 
-  const { data, loading, error, response, fetchData } = useFetch();
-
-const currentUser = getLocalStorage("headerData");
-
-  
+  const isPasswordValid = (password) => {
+    return password.length >= 6;
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const user = getLocalStorage("currentUser") || navigate("/login");
     const userName = user ? user.email.split("@")[0] : null;
 
-     if(currentUser){
-      toastError(`${userName.toUpperCase()}, Already Login`)
-      navigate("/dashboard/home")
-    } else{
-      const url = "http://206.189.91.54/api/v1/auth/sign_in";
-    const config = {
-      method: "POST",
-      body: {
-        email: input.email,
-        password: input.password,
-      },
-    };
-
-    fetchData(url, config);
+    if (!isPasswordValid(input.password)) {
+      toastError("Password must be at least 6 characters long");
+    } else {
+      if (currentUser) {
+        toastError(`${userName.toUpperCase()}, Already Login`);
+        navigate("/dashboard/home");
+      } else {
+        const url = "http://206.189.91.54/api/v1/auth/sign_in";
+        const config = {
+          method: "POST",
+          body: {
+            email: input.email,
+            password: input.password,
+          },
+        };
+        fetchData(url, config);
+      }
     }
-
-   
   };
 
   useEffect(() => {
@@ -68,12 +69,12 @@ const currentUser = getLocalStorage("headerData");
 
       if (response.status === 200) {
         console.log("Successful Login");
-        toastSuccess("Successful Login")
-        setLocalStorage("headerData", headerData)
-        setLocalStorage("currentUser", data.data)
+        toastSuccess("Successful Login");
+        setLocalStorage("headerData", headerData);
+        setLocalStorage("currentUser", data.data);
         navigate("/dashboard/home");
       } else if (response.status !== 200) {
-        toastError(data.errors.full_messages[0])
+        toastError(data.errors.full_messages[0]);
         console.log(data);
         console.log(data.errors.full_messages[0]);
       }
@@ -84,7 +85,6 @@ const currentUser = getLocalStorage("headerData");
       });
     }
   }, [data, loading, error, response, navigate]);
-
 
   return (
     <div className="sign-in-page">
@@ -97,6 +97,7 @@ const currentUser = getLocalStorage("headerData");
             type="email"
             placeholder="Email"
             onChange={handleChange}
+            required
           />
           <Input
             name="password"
@@ -104,6 +105,7 @@ const currentUser = getLocalStorage("headerData");
             type="password"
             placeholder="Password"
             onChange={handleChange}
+            required
           />
           <Button type="submit" text="Log In" />
         </Form>

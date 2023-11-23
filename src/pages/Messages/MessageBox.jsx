@@ -13,6 +13,7 @@ const MessageBox = () => {
   const [selectedUsers] = useSelectedUsers();
   const [key, setKey] = useState();
   const [userData, setUserData] = useState();
+  const [receiverClass, setReceiverClass]= useState();
 
   const handleChange = (e) => {
     setInput((prev) => ({
@@ -30,8 +31,8 @@ const MessageBox = () => {
       headers: { ...userData },
       body: {
         receiver_id: key,
-        receiver_class: "User",
-        body: input.message,
+        receiver_class: receiverClass,
+        body : input.message,
       },
     };
 
@@ -45,7 +46,8 @@ const MessageBox = () => {
     setUserData(data);
     setInput({ message: "" });
     setKey(selectedUsers.value);
-    console.log(selectedUsers.label);
+    setReceiverClass(selectedUsers.class)
+    console.log(selectedUsers.class);
   }, [data, selectedUsers]);
 
   useEffect(() => {
@@ -101,9 +103,10 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
     const userId = selectedUsers.value || [];
     const key_id = userId || [];
     const userData = getLocalStorage("headerData") || [];
+    const selectedClass = selectedUsers.class;
 
     const keyId = key_id;
-    const url = `http://206.189.91.54/api/v1/messages?receiver_id=${keyId}&receiver_class=User`;
+    const url = `http://206.189.91.54/api/v1/messages?receiver_id=${keyId}&receiver_class=${selectedClass}`;
     const config = {
       method: "GET",
       headers: { ...userData },
@@ -122,9 +125,10 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
     if (!loading && !error && data && data.data) {
       const flatData = data.data.map((message) => ({
         receiver: message.receiver.email,
+        channel: message.receiver.name,
         body: message.body,
         created_at: message.created_at,
-        sender: message.sender.email,
+        sender: message.sender.uid,
       }));
 
       const sortMessages = flatData.sort(
@@ -132,6 +136,7 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
       );
 
       console.log("sort", sortMessages);
+      console.log(data)
       setConversation(sortMessages);
     }
   }, [data, loading, error]);
@@ -144,9 +149,9 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
             <p
               key={index}
               className={
-                message.receiver === currentUser.email
-                  ? "received-item"
-                  : "message-item"
+                message.sender === currentUser.email 
+                  ? "message-item"
+                  : "received-item"
               }
             >
               {message.body}

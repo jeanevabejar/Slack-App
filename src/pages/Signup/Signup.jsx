@@ -3,8 +3,8 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import Button from "components/Button";
 import Input from "components/Input";
 import logo from "assets/logo.png";
-import { toastError, toastSuccess } from "@/Utils";
-import {useFetch} from "components/CustomHook";
+import { toastError, toastSuccess, getLocalStorage } from "@/Utils";
+import { useFetch } from "components/CustomHook";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,27 +22,32 @@ const Signup = () => {
   };
 
   const { data, loading, error, fetchData } = useFetch();
+  const isPasswordValid = (password) => {
+    return password.length >= 6;
+  };
 
   const handleSubmit = async (e) => {
+    const currentUser = getLocalStorage("headerData");
     e.preventDefault();
-
-    const url = "http://206.189.91.54/api/v1/auth";
-    const config = {
-      method: "POST",
-      body: {
-        email: input.email,
-        password: input.password,
-        password_confirmation: input.password_confirmation,
-      },
-    };
-
-    fetchData(url, config);
-
-    setInput({
-      email: "",
-      password: "",
-      password_confirmation: "",
-    });
+    if (!isPasswordValid(input.password)) {
+      toastError("Password must be at least 6 characters long");
+    } else {
+      if (currentUser) {
+        toastError(`${userName.toUpperCase()}, Already Login`);
+        navigate("/dashboard/home");
+      } else {
+        const url = "http://206.189.91.54/api/v1/auth";
+        const config = {
+          method: "POST",
+          body: {
+            email: input.email,
+            password: input.password,
+            password_confirmation: input.password_confirmation,
+          },
+        };
+        fetchData(url, config);
+      }
+    }
   };
 
   useEffect(() => {
@@ -51,14 +56,17 @@ const Signup = () => {
         toastSuccess("Successful: Account Created");
         console.log("Successful: Account Created", data);
         navigate("/login");
+        setInput({
+          email: "",
+          password: "",
+          password_confirmation: "",
+        });
       } else if (data.status === "error") {
         console.log("Error:", data);
         toastError(data.errors.full_messages[0]);
       }
     }
   }, [data, loading, error, navigate]);
-
-  
 
   return (
     <div className="sign-up-page">
@@ -73,6 +81,7 @@ const Signup = () => {
             placeholder="Email"
             value={input.email}
             onChange={handleChange}
+            required
           />
           <Input
             name="password"
@@ -80,6 +89,7 @@ const Signup = () => {
             placeholder="Password"
             value={input.password}
             onChange={handleChange}
+            required
           />
           <Input
             name="password_confirmation"
@@ -87,6 +97,7 @@ const Signup = () => {
             placeholder="Confirm Password"
             value={input.password_confirmation}
             onChange={handleChange}
+            required
           />
           <Button type="submit" text="create account" />
         </Form>

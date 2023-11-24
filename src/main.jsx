@@ -6,17 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 // pages
 import App from "@/App";
-import Login from "@/pages/Login";
-import Signup from "@/pages/Signup";
-import { Dashboard, Home } from "@/pages/Dashboard";
-import { MessagePanel } from "@/pages/Messages";
-import { SearchBar } from "@/components/SearchBar";
-import ChatMessageList from "@/components/DirectMessage";
-import Channels from "@/components/Channels";
-import UserSettings from "@/pages/UserSettings";
-import PrivateRoute from "@/components/PrivateRoute";
-import { UsersProvider } from "@/components/CustomHook";
-import TooltipContainer from "@/components/Tooltip";
+import Login from "pages/Login/Login.jsx";
+import Signup from "pages/Signup/Signup.jsx";
+import { Dashboard, Home } from "pages/Dashboard/Dashboard.jsx";
+import { MessagePanel } from "pages/Messages/Message.jsx";
+import { SearchBar } from "components/SearchBar/SearchBar.jsx";
+import ChatMessageList from "components/DirectMessage/ChatMessageList.jsx";
+import Channels from "components/Channels/Channels.jsx";
+import UserSettings from "pages/UserSettings/UserSettings.jsx";
+import PrivateRoute from "components/PrivateRoute/PrivateRoute.jsx";
+import { UsersProvider } from "components/CustomHook/UserProvider.jsx";
+import TooltipContainer from "components/Tooltip/TooltipContainer.jsx";
 
 
 const router = createBrowserRouter([

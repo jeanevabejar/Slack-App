@@ -9,7 +9,7 @@ import App from "./App";
 import Login from "./pages/Login/Login.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
 import { Dashboard, Home } from "./pages/Dashboard/Dashboard.jsx";
-import { MessagePanel } from "./pages/Messages/Message.jsx";
+import { MessagePanel } from "./pages/Messages/MessagePanel.jsx";
 import { SearchBar } from "./Components/SearchBar/SearchBar.jsx";
 import ChatMessageList from "./Components/DirectMessage/ChatMessageList.jsx";
 import Channels from "./Components/Channels/Channels.jsx";

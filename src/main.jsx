@@ -14,8 +14,10 @@ import { SearchBar } from "components/SearchBar";
 import ChatMessageList from "components/DirectMessage";
 import Channels from "components/Channels";
 import UserSettings from "pages/UserSettings";
-import PrivateRoute from "./Components/PrivateRoute";
-import { SelectedOptionsProvider } from 'components/CustomHook';
+import PrivateRoute from "components/PrivateRoute";
+import { UsersProvider } from "components/CustomHook";
+import TooltipContainer from "components/Tooltip";
+
 
 const router = createBrowserRouter([
   {
@@ -33,24 +35,30 @@ const router = createBrowserRouter([
           {
             path: "messenger",
             element: <MessagePanel />,
+            loader: PrivateRoute,
             children: [
               {
                 path: "search",
                 element: <SearchBar />,
+                loader: PrivateRoute,
               },
               {
                 path: "message",
                 element: <ChatMessageList />,
+                loader: PrivateRoute,
               },
               {
                 path: "channels",
                 element: <Channels />,
+                loader: PrivateRoute,
+               
               },
             ],
           },
           {
             path: "settings",
             element: <UserSettings />,
+            loader: PrivateRoute,
           },
         ],
       },
@@ -68,9 +76,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <SelectedOptionsProvider>
-          <RouterProvider router={router} />
-    </SelectedOptionsProvider>
+    <UsersProvider>
+      <RouterProvider router={router} />
+    </UsersProvider>
     <ToastContainer />
+    <TooltipContainer />
   </React.StrictMode>
 );

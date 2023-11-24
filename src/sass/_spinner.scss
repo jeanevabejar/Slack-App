@@ -1,35 +1,83 @@
 @use "./base" as *;
 
-.loader-logo{
+.loader-logo {
   position: relative;
-    width: clamp(2rem,10vw,10rem);
-    left: 1rem;
-    top: 2rem;
-    animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-50px); }
-    100% { transform: translateY(0); }
-    
+  width: clamp(2rem, 10vw, 10rem);
+  left: 1rem;
+  top: 2rem;
+  animation: bounce 1.5s infinite;
 }
 
 .loader {
-    width: clamp(1rem,8vw,8rem) ;
-    height: clamp(1rem,8vw,8rem);
-    border: 20px solid white;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    animation: rotation 1s linear infinite;
-    }
+  width: clamp(1rem, 8vw, 8rem);
+  height: clamp(1rem, 8vw, 8rem);
+  border: 20px solid white;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
 
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
+
+
+.spinner {
+  width: 10rem;
+  position: relative;
+  left: 2.5rem;
+  bottom: -5rem;
+  opacity: 0.3;
+}
+
+.spinner2 {
+  width: 10rem;
+  position: relative;
+  left: 2.5rem;
+  bottom: -5rem;
+  opacity: 0.3;
+}
+
+.dotloader {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $primaryColor;
+  box-shadow: 32px 0 #fff, -32px 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: $primaryColor;
+    box-shadow: 32px 0 #fff2, -32px 0 #fff;
+  }
+  50% {
+    background-color: #fff;
+    box-shadow: 32px 0 $primaryColor, -32px 0 $primaryColor;
+  }
+  100% {
+    background-color: $primaryColor;
+    box-shadow: 32px 0 #fff, -32px 0 $primaryColor;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -5,7 +5,7 @@ import Button from "components/Button";
 import { getLocalStorage, toastError, toastSuccess } from "@/Utils";
 import { useFetch } from "components/CustomHook";
 
-const Dropdown = () => {
+const Dropdown = ({setCreateDropdownVisible}) => {
   const friends = getLocalStorage("friendList") || [];
 
   const [selectedFriendIds, setSelectedFriendIds] = useState([]);
@@ -59,6 +59,7 @@ const Dropdown = () => {
   useEffect(() => {
     if (!loading && !error && data) {
       toastSuccess("Successfully Created Channel");
+      setCreateDropdownVisible(false)
     } else if (error) {
       toastError(data.error[0]);
       console.log("error");
@@ -92,7 +93,7 @@ const Dropdown = () => {
                   }
                   key={index}
                 >
-                  <label>@{friend.label.split("@")[0]}</label>
+                  <label>{friend.label}</label>
                   <Input
                     type="checkbox"
                     onChange={() => handleCheckboxChange(friend)}

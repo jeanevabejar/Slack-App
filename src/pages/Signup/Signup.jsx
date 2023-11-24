@@ -47,7 +47,7 @@ const Signup = () => {
         const config = {
           method: 'POST',
           body: {
-            email: input.email,
+            email: input.email.toLowerCase(),
             password: input.password,
             password_confirmation: input.password_confirmation,
           },

@@ -6,12 +6,15 @@ import spinner2 from "assets/spinner2.gif";
 import { useSelectedUsers } from "components/CustomHook";
 
 const ChannelList = () => {
+      const userData = getLocalStorage("headerData") || [];
   // Fetch data hook
   const { data, loading, error, fetchData } = useFetch();
+
   // State to store channels
   const [channels, setChannels] = useState();
   // Custom hook for selected users
   const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
+
 
   // Handle click on a channel
   const handleClick = (channel) => {
@@ -21,7 +24,7 @@ const ChannelList = () => {
 
   // Fetch channels function
   const fetchChannel = async () => {
-    const userData = getLocalStorage("headerData") || [];
+
 
     const url = "http://206.189.91.54/api/v1/channels";
     const config = {
@@ -32,11 +35,13 @@ const ChannelList = () => {
     fetchData(url, config);
   };
 
-  // Fetch channels on component mount
-  useEffect(() => {
-    fetchChannel();
-  }, []);
+ 
 
+
+  // Fetch channels on component mount
+ useEffect(() => {
+    fetchChannel();
+  }, [selectedUsers]);
   // Update channels when data changes
   useEffect(() => {
     if (!loading && !error && data && data.data) {
@@ -56,6 +61,9 @@ const ChannelList = () => {
       );
 
       setChannels(sortChannel);
+ 
+      console.log("sel", selectedUsers)
+   
     } else if (error) {
       console.log(error);
     }
@@ -67,7 +75,7 @@ const ChannelList = () => {
       <div className="channel-list-container">
         <ul>
           {/* Display spinner while loading */}
-          {loading && <img className="spinner" src={spinner2} />}
+          {loading && <img className="spinner2" src={spinner2} />}
           {/* Display error message if there's an error */}
           {error && <p>Error: {error.message}</p>}
           {/* Display channels if available */}
@@ -78,7 +86,7 @@ const ChannelList = () => {
                 key={index}
                 onClick={() => handleClick(channel)}
                 // Highlight selected channel
-                className={selectedUsers === channel ? "highlight" : ""}
+                className={selectedUsers.value === channel.value ? "highlight" : ""}
               >
                 {/* Display profile image */}
                 <img src={profile} alt="Profile" />

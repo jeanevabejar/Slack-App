@@ -97,6 +97,7 @@
       list-style: none;
       color: white;
       font-size: clamp(0.5rem, 1vw, 1rem);
+      text-overflow: ellipsis;
     }
     input {
       width: 2vh;

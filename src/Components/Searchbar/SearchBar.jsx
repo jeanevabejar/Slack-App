@@ -6,7 +6,7 @@ import SearchList from './SearchList';
 
 const SearchBar = () => {
   // Custom hook for fetching data
-  const { data, fetchData } = useFetch();
+  const { data, fetchData, loading, error } = useFetch();
 
   // State for storing fetched users and select options
   const [users, setUsers] = useState([]);
@@ -31,7 +31,7 @@ const SearchBar = () => {
 
   // Effect to update users and options when data changes
   useEffect(() => {
-    if (data && data.data) {
+    if (!loading && !error && data && data.data) {
       // Store the last 10 users
       setUsers(data.data.slice(-10));
 
@@ -40,15 +40,12 @@ const SearchBar = () => {
         data.data.flatMap((user) => [{ value: user.id, label: user.email }])
       );
     }
-  }, [data]);
+  }, [data, loading, error]);
 
   // Handle changes in the selected option
   const handleChange = (selectedOption) => {
-
-
     // Add a custom class to the selected option
     const modifiedOption = { ...selectedOption, class: 'User' };
-
     // Update selected options
     setSelectedOptions(modifiedOption);
   };
@@ -76,8 +73,8 @@ const SearchBar = () => {
       {/* Display search results */}
       <SearchList
         users={users}
-        loading={false} // You can modify this based on your actual loading state
-        error={false}  // You can modify this based on your actual error state
+        loading={loading} 
+        error={error}  
         selectedOptions={selectedOptions}
       />
     </>

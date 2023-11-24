@@ -1,5 +1,5 @@
 import React from 'react';
-import spinner from 'assets/loader.gif';
+import loader from 'assets/loader.gif';
 import Button from 'components/Button';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { MdPersonRemoveAlt1 } from 'react-icons/md';
@@ -45,7 +45,7 @@ const SearchList = ({ users, loading, error, selectedOptions }) => {
     <>
       <div className="search-result-container">
         <div className="result-container">
-          {loading && <img className="spinner" src={spinner} />}
+          {loading && <img className="spinner" src={loader} />}
           {error && <p>Error: {error.message}</p>}
           {selectedOptions && (
             <>

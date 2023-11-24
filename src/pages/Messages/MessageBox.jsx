@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Input from 'components/Input';
-import Button from 'components/Button';
-import { BiSolidSend } from 'react-icons/bi';
-import { useFetch, useSelectedUsers } from 'components/CustomHook';
-import { getLocalStorage, toastSuccess } from '@/Utils';
-import profile from 'assets/profile.png';
+import React, { useEffect, useState } from "react";
+import Input from "components/Input";
+import Button from "components/Button";
+import { BiSolidSend } from "react-icons/bi";
+import { useFetch, useSelectedUsers } from "components/CustomHook";
+import { getLocalStorage, toastSuccess } from "@/Utils";
+import profile from "assets/profile.png";
+import { formatTimestamp, extractUsername } from "@/Utils";
 
 // Component for the message box
 const MessageBox = () => {
   // State for message input, user data, and selected user
-  const [input, setInput] = useState({ message: '' });
+  const [input, setInput] = useState({ message: "" });
   const { data, loading, error, fetchData } = useFetch();
   const [selectedUsers] = useSelectedUsers();
   const [key, setKey] = useState();
@@ -26,11 +27,11 @@ const MessageBox = () => {
 
   // Handle message submission
   const handleSubmit = async () => {
-    const userData = getLocalStorage('headerData');
+    const userData = getLocalStorage("headerData");
 
-    const url = 'http://206.189.91.54/api/v1/messages';
+    const url = "http://206.189.91.54/api/v1/messages";
     const config = {
-      method: 'POST',
+      method: "POST",
       headers: { ...userData },
       body: {
         receiver_id: key,
@@ -45,7 +46,7 @@ const MessageBox = () => {
   // Effect to update user data and input on changes
   useEffect(() => {
     setUserData(data);
-    setInput({ message: '' });
+    setInput({ message: "" });
     setKey(selectedUsers.value);
     setReceiverClass(selectedUsers.class);
   }, [data, selectedUsers]);
@@ -53,7 +54,7 @@ const MessageBox = () => {
   // Effect to show success message after message is sent
   useEffect(() => {
     if (!loading && !error && data) {
-      toastSuccess('Message Sent');
+      toastSuccess("Message Sent");
     }
   }, [loading, error]);
 
@@ -63,8 +64,8 @@ const MessageBox = () => {
       <div className="chatname">
         {/* Display selected user's profile image and username */}
         <h3>
-          <img src={profile} alt="profile.jpg" />
-          @{selectedUsers ? selectedUsers.label?.split('@')[0] : 'User'}
+          <img src={profile} alt="profile.jpg" />@
+          {selectedUsers.class && selectedUsers ? extractUsername(selectedUsers.label): "User"}
         </h3>
       </div>
       {/* Display conversation panel and input message container */}
@@ -96,20 +97,20 @@ const MessageBox = () => {
 const ConversationPanel = ({ selectedUsers, userData }) => {
   const { data, loading, error, fetchData } = useFetch();
   const [conversation, setConversation] = useState();
-  const currentUser = getLocalStorage('currentUser');
+  const currentUser = getLocalStorage("currentUser");
   const [received, setReceived] = useState();
 
   // Fetch messages for the selected user
   const fetchMessage = async () => {
     const userId = selectedUsers.value || [];
     const key_id = userId || [];
-    const userData = getLocalStorage('headerData') || [];
+    const userData = getLocalStorage("headerData") || [];
     const selectedClass = selectedUsers.class;
 
     const keyId = key_id;
     const url = `http://206.189.91.54/api/v1/messages?receiver_id=${keyId}&receiver_class=${selectedClass}`;
     const config = {
-      method: 'GET',
+      method: "GET",
       headers: { ...userData },
     };
 
@@ -140,31 +141,36 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
 
       // Update conversation state
       setConversation(sortMessages);
+      console.log("mes", sortMessages);
     }
   }, [data, loading, error]);
 
   // JSX structure for the conversation panel
   return (
     <>
-      <div className="conversation-box">
-        {conversation && conversation.length > 0 ? (
+      <div className={loading ?"loading-box":"conversation-box"}>
+        {loading && <span className="dotloader"></span>}
+        {conversation && conversation.length > 0 && 
           // Display messages in conversation box
           conversation.map((message, index) => (
-            <p
-              key={index}
-              className={
-                message.sender === currentUser.email
-                  ? 'message-item'
-                  : 'received-item'
-              }
-            >
-              {message.body}
-            </p>
+            <>
+              <div
+                className={
+                  message.sender === currentUser.email
+                    ? "message-item"
+                    : "received-item"
+                }
+              >
+                <h3 className="senderName">
+                  @{extractUsername(message.sender)}:
+                  
+                </h3>
+                <p key={index}>{message.body}
+                <h4>{formatTimestamp(message.created_at)}</h4></p>
+              </div>
+            </>
           ))
-        ) : (
-          // Display message if no messages available
-          <p>No messages available</p>
-        )}
+        }
       </div>
     </>
   );

@@ -53,9 +53,23 @@
   overflow: auto;
 }
 
+.loading-box{
+  @include min(100%, 60vh);
+  @include max(100%, 60vh);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  overflow: auto;
+}
+
 .conversation-box::-webkit-scrollbar {
   width: 8px;
-
 }
 .conversation-box::-webkit-scrollbar-thumb {
   background-color: $secondColor;
@@ -66,30 +80,53 @@
   background-color: transparent;
 }
 
-.message-item {
-  width: fit-content;
-  height: fit-content;
-  padding: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.senderName {
+  color: $primaryColor;
+  text-transform: capitalize;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+}
 
-  background-color: $secondColor;
-  color: white;
-  border-radius: 30px;
+.message-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  p {
+    padding: 0.8rem;
+    background-color: $secondColor;
+    color: white;
+    border-radius: 30px;
+    width: fit-content;
+    height: fit-content;
+    h4{
+      padding-top: 0.5rem;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+  }
 }
 
 .received-item {
-  width: fit-content;
-  height: fit-content;
-  padding: 0.6rem;
   display: flex;
   align-self: flex-start;
   justify-content: center;
+  flex-direction: column;
 
-  background-color: $secondColor;
-  color: white;
-  border-radius: 30px;
+
+  p {
+    padding: 0.8rem;
+    background-color: $secondColor;
+    color: white;
+    border-radius: 30px;
+    width: fit-content;
+    height: fit-content;
+    h4{
+      padding-top: 0.5rem;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+  }
 }
 
 .input-message-container {

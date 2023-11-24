@@ -15,7 +15,7 @@ import ChatMessageList from "components/DirectMessage";
 import Channels from "components/Channels";
 import UserSettings from "pages/UserSettings";
 import PrivateRoute from "components/PrivateRoute";
-import { SelectedUsersProvider } from "components/CustomHook";
+import { UsersProvider } from "components/CustomHook";
 import TooltipContainer from "components/Tooltip";
 
 
@@ -76,9 +76,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <SelectedUsersProvider>
+    <UsersProvider>
       <RouterProvider router={router} />
-    </SelectedUsersProvider>
+    </UsersProvider>
     <ToastContainer />
     <TooltipContainer />
   </React.StrictMode>

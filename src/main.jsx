@@ -5,18 +5,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // pages
-import App from "@/App";
-import Login from "pages/Login/Login.jsx";
-import Signup from "pages/Signup/Signup.jsx";
-import { Dashboard, Home } from "pages/Dashboard/Dashboard.jsx";
-import { MessagePanel } from "pages/Messages/Message.jsx";
-import { SearchBar } from "components/SearchBar/SearchBar.jsx";
-import ChatMessageList from "components/DirectMessage/ChatMessageList.jsx";
-import Channels from "components/Channels/Channels.jsx";
-import UserSettings from "pages/UserSettings/UserSettings.jsx";
-import PrivateRoute from "components/PrivateRoute/PrivateRoute.jsx";
-import { UsersProvider } from "components/CustomHook/UserProvider.jsx";
-import TooltipContainer from "components/Tooltip/TooltipContainer.jsx";
+import App from "./App";
+import Login from "./pages/Login/Login.jsx";
+import Signup from "./pages/Signup/Signup.jsx";
+import { Dashboard, Home } from "./pages/Dashboard/Dashboard.jsx";
+import { MessagePanel } from "./pages/Messages/Message.jsx";
+import { SearchBar } from "./Components/SearchBar/SearchBar.jsx";
+import ChatMessageList from "./Components/DirectMessage/ChatMessageList.jsx";
+import Channels from "./Components/Channels/Channels.jsx";
+import UserSettings from "./pages/UserSettings/UserSettings.jsx";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute.jsx";
+import { UsersProvider } from "./Components/CustomHook/UserProvider.jsx";
+import TooltipContainer from "./Components/Tooltip/TooltipContainer.jsx";
 
 
 const router = createBrowserRouter([

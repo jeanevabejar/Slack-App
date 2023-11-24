@@ -3,7 +3,10 @@ import NavbarExtension from "components/NavbarExtension";
 import MessageBox from "./MessageBox";
 
 
+
 const MessagePanel = () => {
+
+
   return (
     <>
       <div className="message-panel">

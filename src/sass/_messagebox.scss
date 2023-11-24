@@ -20,36 +20,113 @@
   max-height: 5vh;
   border-bottom: 3px solid $primaryColor;
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1.5rem;
+
   color: $secondColor;
   font-size: clamp(0.5rem, 1vw, 1rem);
+  text-transform: capitalize;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  img {
+    width: 2rem;
+    border-radius: 50px;
+    border: 2px solid $primaryColor;
+  }
 }
 
 .conversation-box {
   @include min(100%, 60vh);
-  padding: 1.5rem;
+  @include max(100%, 60vh);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   display: flex;
   align-items: flex-end;
-   flex-direction: column-reverse;
-   gap: 1rem;
-   color: white;
-   overflow: auto;
+  flex-direction: column-reverse;
+  gap: 1rem;
+  color: white;
+  overflow: auto;
 }
 
-.message-item{
-  width: fit-content;
-  height: fit-content;
-  padding: 0.5rem;
+.loading-box{
+  @include min(100%, 60vh);
+  @include max(100%, 60vh);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   display: flex;
-  align-items: center;
   justify-content: center;
- 
-  background-color: $secondColor;
+  align-items: center;
+  gap: 1rem;
   color: white;
-  border-radius: 30px;
+  overflow: auto;
+}
+
+.conversation-box::-webkit-scrollbar {
+  width: 8px;
+}
+.conversation-box::-webkit-scrollbar-thumb {
+  background-color: $secondColor;
+  border-radius: 10px;
+}
+
+.conversation-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.senderName {
+  color: $primaryColor;
+  text-transform: capitalize;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+}
+
+.message-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  p {
+    padding: 0.8rem;
+    background-color: $secondColor;
+    color: white;
+    border-radius: 30px;
+    width: fit-content;
+    height: fit-content;
+    h4{
+      padding-top: 0.5rem;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+  }
+}
+
+.received-item {
+  display: flex;
+  align-self: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+
+  p {
+    padding: 0.8rem;
+    background-color: $secondColor;
+    color: white;
+    border-radius: 30px;
+    width: fit-content;
+    height: fit-content;
+    h4{
+      padding-top: 0.5rem;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+  }
 }
 
 .input-message-container {
@@ -67,8 +144,6 @@
     align-items: center;
     padding: 1.5rem;
   }
-
-  
 }
 
 .message-input {
@@ -83,7 +158,7 @@
   padding: 0.5rem;
 }
 
-.send-btn{
+.send-btn {
   @include min(10%, 10vh);
   @include max(10%, 10vh);
   border: none;

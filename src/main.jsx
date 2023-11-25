@@ -11,8 +11,7 @@ import Signup from "pages/Signup";
 import { Dashboard, Home } from "pages/Dashboard";
 import { MessagePanel } from "pages/Messages";
 import ChatMessageList from "Components/DirectMessage";
-import { SearchBar } from "Components/SearchBar";
-
+import { SearchBar } from "Components/Searchbar";
 import Channels from "Components/Channels";
 import UserSettings from "pages/UserSettings";
 import PrivateRoute from "Components/PrivateRoute";

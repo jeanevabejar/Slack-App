@@ -14,7 +14,7 @@ const UserSettings = () => {
   const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
   // Get current user data from local storage, or redirect to login if not available
   const currentUser = getLocalStorage("currentUser") || navigate("/login");
-  const userName = currentUser ? currentUser.email.split("@") : null;
+  const userName = currentUser ? currentUser.email.split("@") : null; 
 
   // Function to handle user logout
   const handleLogout = () => {

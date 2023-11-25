@@ -10,8 +10,9 @@ import Login from "pages/Login";
 import Signup from "pages/Signup";
 import { Dashboard, Home } from "pages/Dashboard";
 import { MessagePanel } from "pages/Messages";
-import { SearchBar } from "Components/SearchBar";
 import ChatMessageList from "Components/DirectMessage";
+import { SearchBar } from "Components/SearchBar";
+
 import Channels from "Components/Channels";
 import UserSettings from "pages/UserSettings";
 import PrivateRoute from "Components/PrivateRoute";

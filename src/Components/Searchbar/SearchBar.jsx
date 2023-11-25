@@ -4,7 +4,7 @@ import { useFetch } from 'Components/CustomHook';
 import { getLocalStorage } from '@/Utils';
 import SearchList from './SearchList';
 
-const SearchBar = () => {
+export const SearchBar = () => {
   // Custom hook for fetching data
   const { data, fetchData, loading, error } = useFetch();
 
@@ -81,4 +81,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+// export default SearchBar;

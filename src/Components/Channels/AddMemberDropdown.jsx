@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-router-dom";
-import Input from "components/Input";
-import Button from "components/Button";
+import Input from "Components/Input";
+import Button from "Components/Button";
 import { getLocalStorage, toastError, toastSuccess } from "@/Utils";
-import { useFetch } from "components/CustomHook";
+import { useFetch } from "Components/CustomHook";
 import AsynchSelect from "react-select/async";
-import { useSelectedUsers } from "components/CustomHook";
+import { useSelectedUsers } from "Components/CustomHook";
 
 const AddMemberDropdown = ({setAddDropdownVisible, existingMember}) => {
   const friends = getLocalStorage("friendList") || [];

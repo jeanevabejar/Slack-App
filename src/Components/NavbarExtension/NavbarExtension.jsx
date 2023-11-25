@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet} from "react-router-dom";
-import MessengerNavbar from "components/MessengerNavbar";
+import MessengerNavbar from "Components/MessengerNavbar";
 
 
 const NavbarExtension = () => {

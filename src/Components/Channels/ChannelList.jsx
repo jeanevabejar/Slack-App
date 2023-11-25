@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useFetch } from "components/CustomHook";
+import { useFetch } from "Components/CustomHook";
 import { getLocalStorage } from "@/Utils";
 import profile from "assets/profile.png";
 import spinner2 from "assets/spinner2.gif";
-import { useSelectedUsers } from "components/CustomHook";
+import { useSelectedUsers } from "Components/CustomHook";
 
 const ChannelList = () => {
       const userData = getLocalStorage("headerData") || [];

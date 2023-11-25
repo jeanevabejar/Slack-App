@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logo from "assets/logo.png";
 import { Form, Link, useNavigate } from "react-router-dom";
-import Input from "components/Input";
-import Button from "components/Button";
-import { useFetch } from "components/CustomHook";
+import Input from "Components/Input";
+import Button from "Components/Button";
+import { useFetch } from "Components/CustomHook";
 import {
   getLocalStorage,
   setLocalStorage,

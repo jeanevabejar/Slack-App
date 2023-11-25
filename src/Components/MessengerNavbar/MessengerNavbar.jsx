@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'components/Button';
+import Button from 'Components/Button';
 import { GoPersonAdd } from 'react-icons/go';
 import { BiSolidCommentAdd } from 'react-icons/bi';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';

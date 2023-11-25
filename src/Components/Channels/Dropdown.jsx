@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-router-dom";
-import Input from "components/Input";
-import Button from "components/Button";
+import Input from "Components/Input";
+import Button from "Components/Button";
 import { getLocalStorage, toastError, toastSuccess } from "@/Utils";
-import { useFetch } from "components/CustomHook";
+import { useFetch } from "Components/CustomHook";
 
 const Dropdown = ({setCreateDropdownVisible}) => {
   const friends = getLocalStorage("friendList") || [];

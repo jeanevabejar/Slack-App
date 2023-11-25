@@ -1,6 +1,6 @@
 import React from 'react';
 import loader from 'assets/loader.gif';
-import Button from 'components/Button';
+import Button from 'Components/Button';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { MdPersonRemoveAlt1 } from 'react-icons/md';
 import { getLocalStorage, setLocalStorage, toastInfo, toastSuccess } from '@/Utils';

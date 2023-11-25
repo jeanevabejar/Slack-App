@@ -1,11 +1,11 @@
 import React from "react";
 import { MessageBox } from "pages/Messages";
-import Button from "components/Button";
+import Button from "Components/Button";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { removeLocalStorage, getLocalStorage } from "@/Utils";
 import { toastInfo } from "@/Utils";
-import { useSelectedUsers } from "components/CustomHook";
+import { useSelectedUsers } from "Components/CustomHook";
 import img from 'assets/logout.gif'
 
 const UserSettings = () => {

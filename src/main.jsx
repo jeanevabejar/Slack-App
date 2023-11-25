@@ -18,7 +18,7 @@ import PrivateRoute from "Components/PrivateRoute";
 import { UsersProvider } from "Components/CustomHook";
 import TooltipContainer from "Components/Tooltip";
 
-//routes
+
 const router = createBrowserRouter([
   {
     path: "/",

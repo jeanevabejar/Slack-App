@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AsyncSelect from 'react-select/async';
-import { useFetch } from 'components/CustomHook';
+import { useFetch } from 'Components/CustomHook';
 import { getLocalStorage } from '@/Utils';
 import SearchList from './SearchList';
 

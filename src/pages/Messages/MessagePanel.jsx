@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarExtension from "components/NavbarExtension";
+import NavbarExtension from "Components/NavbarExtension";
 import MessageBox from "./MessageBox";
 
 

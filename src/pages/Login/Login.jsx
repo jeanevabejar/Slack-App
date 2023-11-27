@@ -91,11 +91,12 @@ const Login = () => {
           navigate("/dashboard/home");
         } else {
           // Login error
-          throw new Error(data.errors.full_messages[0]);
+          throw new Error(data.errors.full_messages);
         }
       } catch (error) {
         // Handle any errors that occurred
         toastError(error.message);
+        console.log(error.message)
       }
 
       // Reset input values

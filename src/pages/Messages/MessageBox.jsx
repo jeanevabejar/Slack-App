@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Input from "components/Input";
-import Button from "components/Button";
+import Input from "Components/Input";
+import Button from "Components/Button";
 import { BiSolidSend } from "react-icons/bi";
-import { useFetch, useSelectedUsers } from "components/CustomHook";
+import { useFetch, useSelectedUsers } from "Components/CustomHook";
 import { getLocalStorage, toastSuccess } from "@/Utils";
 import profile from "assets/profile.png";
 import { formatTimestamp, extractUsername } from "@/Utils";

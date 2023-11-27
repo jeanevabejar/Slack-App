@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useFetch } from "components/CustomHook";
-import Button from "components/Button";
+import { useFetch } from "Components/CustomHook";
+import Button from "Components/Button";
 import { MdGroupAdd } from "react-icons/md";
 import Dropdown from "./Dropdown";
 import AddMemberDropdown from "./AddMemberDropdown";
 import ChannelList from "./ChannelList";
-import { useSelectedUsers } from "components/CustomHook";
+import { useSelectedUsers } from "Components/CustomHook";
 import { getLocalStorage } from "@/Utils";
 
 const Channels = () => {

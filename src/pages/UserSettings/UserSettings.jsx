@@ -1,11 +1,11 @@
 import React from "react";
 import { MessageBox } from "pages/Messages";
-import Button from "components/Button";
+import Button from "Components/Button";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { removeLocalStorage, getLocalStorage } from "@/Utils";
 import { toastInfo } from "@/Utils";
-import { useSelectedUsers } from "components/CustomHook";
+import { useSelectedUsers } from "Components/CustomHook";
 import img from 'assets/logout.gif'
 
 const UserSettings = () => {
@@ -14,7 +14,7 @@ const UserSettings = () => {
   const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
   // Get current user data from local storage, or redirect to login if not available
   const currentUser = getLocalStorage("currentUser") || navigate("/login");
-  const userName = currentUser ? currentUser.email.split("@") : null;
+  const userName = currentUser ? currentUser.email.split("@") : null; 
 
   // Function to handle user logout
   const handleLogout = () => {

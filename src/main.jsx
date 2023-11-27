@@ -9,14 +9,14 @@ import App from "@/App";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
 import { Dashboard, Home } from "pages/Dashboard";
-import { MessagePanel } from "./pages/Messages";
-import { SearchBar } from "components/SearchBar";
-import ChatMessageList from "components/DirectMessage";
-import Channels from "components/Channels";
+import { MessagePanel } from "pages/Messages";
+import ChatMessageList from "Components/DirectMessage";
+import { SearchBar } from "Components/Searchbar";
+import Channels from "Components/Channels";
 import UserSettings from "pages/UserSettings";
-import PrivateRoute from "components/PrivateRoute";
-import { UsersProvider } from "components/CustomHook";
-import TooltipContainer from "components/Tooltip";
+import PrivateRoute from "Components/PrivateRoute";
+import { UsersProvider } from "Components/CustomHook";
+import TooltipContainer from "Components/Tooltip";
 
 
 const router = createBrowserRouter([

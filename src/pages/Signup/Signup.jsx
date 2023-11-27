@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Link, useNavigate } from 'react-router-dom';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'Components/Button';
+import Input from 'Components/Input';
 import logo from 'assets/logo.png';
 import { toastError, toastSuccess, getLocalStorage } from '@/Utils';
-import { useFetch } from 'components/CustomHook';
+import { useFetch } from 'Components/CustomHook';
 
 const Signup = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logo from "assets/logo.png";
 import { Form, Link, useNavigate } from "react-router-dom";
-import Input from "components/Input";
-import Button from "components/Button";
-import { useFetch } from "components/CustomHook";
+import Input from "Components/Input";
+import Button from "Components/Button";
+import { useFetch } from "Components/CustomHook";
 import {
   getLocalStorage,
   setLocalStorage,
@@ -91,11 +91,12 @@ const Login = () => {
           navigate("/dashboard/home");
         } else {
           // Login error
-          throw new Error(data.errors.full_messages[0]);
+          throw new Error(data.errors.full_messages);
         }
       } catch (error) {
         // Handle any errors that occurred
         toastError(error.message);
+        console.log(error.message)
       }
 
       // Reset input values

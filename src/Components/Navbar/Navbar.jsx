@@ -4,7 +4,7 @@ import { IoHome } from 'react-icons/io5';
 import { PiChatsCircleBold } from 'react-icons/pi';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Button from 'components/Button';
+import Button from 'Components/Button';
 
 const Navbar = () => {
   const location = useLocation();

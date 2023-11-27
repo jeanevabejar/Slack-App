@@ -1,8 +1,8 @@
 import React from "react";
 import { getLocalStorage, extractUsername } from "@/Utils";
-import Button from "components/Button";
+import Button from "Components/Button";
 import profile from "assets/profile.png";
-import { useSelectedUsers } from 'components/CustomHook';
+import { useSelectedUsers } from 'Components/CustomHook';
 
 const ChatMessageList = () => {
   // Retrieve friend list from local storage or default to an empty array

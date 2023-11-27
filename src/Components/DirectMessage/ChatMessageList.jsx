@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getLocalStorage, extractUsername } from "@/Utils";
 import Button from "Components/Button";
 import profile from "assets/profile.png";

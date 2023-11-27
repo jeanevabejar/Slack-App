@@ -63,7 +63,6 @@ const Signup = () => {
       if (data.status === 'success') {
         // Display success message and navigate to login page
         toastSuccess('Account Created Successfully');
-        console.log('Successful: Account Created', data);
         navigate('/login');
         // Reset input fields
         setInput({
@@ -73,8 +72,8 @@ const Signup = () => {
         });
       } else if (data.status === 'error') {
         // Display error message if signup fails
-        console.log('Error:', data);
         toastError(data.errors.full_messages[0]);
+        toastError(data.errors.full_messages[1]);
       }
     }
   }, [data, loading, error, navigate]);

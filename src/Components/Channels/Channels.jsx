@@ -19,7 +19,7 @@ const Channels = () => {
     fetchData: fetchChannelDetail,
   } = useFetch();
   const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
-  const [existingMember, setExistingMember]= useState()
+  const [existingMember, setExistingMember] = useState();
 
   // Toggle function for create dropdown
   const toggleCreateDropdown = () => {
@@ -51,14 +51,14 @@ const Channels = () => {
 
   useEffect(() => {
     fetchChannelInfo();
-  }, []);
+  }, [selectedUsers]);
 
   useEffect(() => {
     if (!loading && !error && channelDetail && channelDetail.data) {
-      const flatMappedData = channelDetail.data.channel_members.map(member => member.user_id);
-      console.log("detail", flatMappedData);
-      console.log("channel", selectedUsers);
-      setExistingMember(flatMappedData)
+      const UserIds = channelDetail.data.channel_members.map(
+        (member) => member.user_id
+      );
+      setExistingMember(UserIds);
     }
   }, [channelDetail, loading, error, selectedUsers, addDropdownVisible]);
 
@@ -81,12 +81,17 @@ const Channels = () => {
       </Button>
       {/* Render add member dropdown if visible */}
       {addDropdownVisible && (
-        <AddMemberDropdown setAddDropdownVisible={setAddDropdownVisible} 
-        existingMember={existingMember}/>
+        <AddMemberDropdown
+          setAddDropdownVisible={setAddDropdownVisible}
+          existingMember={existingMember}
+        />
       )}
 
       {/* Component to display channel list */}
-      <ChannelList />
+      <ChannelList
+        channelDetail={channelDetail}
+        existingMember={existingMember}
+      />
     </div>
   );
 };

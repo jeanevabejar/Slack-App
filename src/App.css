@@ -441,7 +441,7 @@ svg {
   min-height: 25vh;
   max-width: 100%;
   max-height: 25vh;
-  font-size: clamp(1rem, 3vw, 3rem);
+  font-size: clamp(0.8rem, 3vw, 3rem);
   text-align: center;
   font-weight: bolder;
   color: #1f3b2f;
@@ -455,7 +455,7 @@ svg {
   min-height: 25vh;
   max-width: 50%;
   max-height: 25vh;
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
   text-align: center;
   color: #495d54;
 }
@@ -996,10 +996,12 @@ svg {
   border-bottom: 3px solid #495d54;
 }
 .channel-form .user-dropdown label {
+  max-width: 80%;
   list-style: none;
   color: white;
   font-size: clamp(0.5rem, 1vw, 1rem);
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 .channel-form .user-dropdown input {
   width: 2vh;
@@ -1029,20 +1031,48 @@ svg {
   height: 5vh;
   list-style: none;
   color: white;
-  padding-bottom: 0.5rem;
-  padding-left: 0.5rem;
+  padding: 0.5rem;
+  padding-right: 0.3rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   cursor: pointer;
 }
 .channel-list-container li img {
-  width: 10%;
+  width: 15%;
   border-radius: 50%;
 }
 
 .channel-list-container::-webkit-scrollbar {
   width: 1%;
+}
+
+.dropdown-member-list {
+  max-width: 100%;
+  max-height: 20vh;
+  border: 4px solid white;
+  border-style: dashed;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+}
+.dropdown-member-list p {
+  font-size: clamp(0.5rem, 1vw, 1rem);
+  color: white;
+}
+.dropdown-member-list li {
+  height: 4vh;
+  padding: none;
+}
+
+.dropdown-member-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdown-member-list::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
 }
 
 .loader-logo {

@@ -23,7 +23,7 @@
 .home-text{
     @include min(100%, 25vh);
     @include max(100%, 25vh);
-    font-size: clamp(1rem, 3vw, 3rem);
+    font-size: clamp(0.8rem, 3vw, 3rem);
     text-align: center;
     font-weight: bolder;
     color: $primaryColor;
@@ -36,7 +36,7 @@
 .home-subtext{
     @include min(50%, 25vh);
     @include max(50%, 25vh);
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
     text-align: center;
     color: $secondColor;
 

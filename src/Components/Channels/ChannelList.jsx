@@ -119,6 +119,8 @@ const MemberList = ({ channelDetail, selectedUsers, existingMember }) => {
     console.log("All User Data:", data);
 
     if (!loading && !error && data.data) {
+
+  
       const userDetail = data.data.flatMap((user) => ({
         value: user.id,
         label: user.email,
@@ -135,11 +137,11 @@ const MemberList = ({ channelDetail, selectedUsers, existingMember }) => {
 
     if (isDataLoaded && savedData.length > 0) {
       // Get the list of user IDs from channelDetail
-      const channelUserIds = channelDetail.data.channel_members.map((user) => user.user_id) || [];
+      
 
       // Filter the users based on the user IDs in channelDetail
       const filteredUser = savedData.filter((user) =>
-        channelUserIds.includes(user.value)
+        existingMember.includes(user.value)
       );
 
       // Update the members state with the filtered data

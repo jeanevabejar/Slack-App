@@ -91,12 +91,14 @@ const Login = () => {
           navigate("/dashboard/home");
         } else {
           // Login error
-          throw new Error(data.errors.full_messages);
+          toastError(data.errors)
+          throw new Error(data.errors);
+          
         }
       } catch (error) {
         // Handle any errors that occurred
+        // if remove it is redirected to error page
         toastError(error.message);
-        console.log(error.message)
       }
 
       // Reset input values
@@ -104,7 +106,7 @@ const Login = () => {
         email: "",
         password: "",
       });
-    }
+    } 
   }, [data, loading, error, response, navigate]);
 
   return (

@@ -46,25 +46,23 @@ const Dropdown = ({setCreateDropdownVisible}) => {
       method: "POST",
       headers: { ...userData },
       body: {
-        user_ids: input.ids,
-        name: input.channelName,
+        user_ids: selectedFriendIds,
+        name: input.channelName.toLowerCase(),
       },
     };
 
     fetchData(url, config);
-    console.log(input.ids);
   };
 
   // Handle success or error after data fetch
   useEffect(() => {
-    if (!loading && !error && data) {
+    if (!loading && !error &&  !data.errors) {
       toastSuccess("Successfully Created Channel");
       setCreateDropdownVisible(false)
-    } else if (error) {
-      toastError(data.error[0]);
-      console.log("error");
+    } else if (data && data.errors) {
+      toastError(data.errors[0]);
     }
-  }, [loading, error, data]);
+  }, [loading, error, data, selectedFriendIds]);
 
   return (
     <>

@@ -4,28 +4,23 @@ import { getLocalStorage } from "@/Utils";
 import profile from "assets/profile.png";
 import spinner2 from "assets/spinner2.gif";
 import { useSelectedUsers } from "Components/CustomHook";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-const ChannelList = () => {
-      const userData = getLocalStorage("headerData") || [];
-  // Fetch data hook
+const ChannelList = ({ channelDetail, existingMember }) => {
+  const userData = getLocalStorage("headerData") || [];
   const { data, loading, error, fetchData } = useFetch();
-
-  // State to store channels
   const [channels, setChannels] = useState();
-  // Custom hook for selected users
   const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
+  const [openChannelId, setOpenChannelId] = useState(null);
 
-
-  // Handle click on a channel
   const handleClick = (channel) => {
-    console.log("target", channel);
     updateSelectedUsers(channel);
+    setOpenChannelId((prevId) =>
+      prevId === channel.value ? null : channel.value
+    );
   };
 
-  // Fetch channels function
   const fetchChannel = async () => {
-
-
     const url = "http://206.189.91.54/api/v1/channels";
     const config = {
       method: "GET",
@@ -35,17 +30,12 @@ const ChannelList = () => {
     fetchData(url, config);
   };
 
- 
-
-
-  // Fetch channels on component mount
- useEffect(() => {
+  useEffect(() => {
     fetchChannel();
   }, [selectedUsers]);
-  // Update channels when data changes
+
   useEffect(() => {
     if (!loading && !error && data && data.data) {
-      console.log(data);
       const channels = data.data.map((channel) => {
         return {
           value: channel.id,
@@ -55,45 +45,121 @@ const ChannelList = () => {
         };
       });
 
-      console.log(channels);
       const sortChannel = channels.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-
       setChannels(sortChannel);
- 
-      console.log("sel", selectedUsers)
-   
     } else if (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }, [loading, error, data]);
 
-  // Render component
   return (
     <>
       <div className="channel-list-container">
         <ul>
-          {/* Display spinner while loading */}
           {loading && <img className="spinner2" src={spinner2} />}
-          {/* Display error message if there's an error */}
           {error && <p>Error: {error.message}</p>}
-          {/* Display channels if available */}
           {channels &&
             channels.length >= 0 &&
             channels.map((channel, index) => (
-              <li
-                key={index}
-                onClick={() => handleClick(channel)}
-                // Highlight selected channel
-                className={selectedUsers.value === channel.value ? "highlight" : ""}
-              >
-                {/* Display profile image */}
-                <img src={profile} alt="Profile" />
-                {/* Display channel name */}
-                {channel.label}
-              </li>
+              <>
+                <li
+                  key={index}
+                  onClick={() => handleClick(channel)}
+                  className={
+                    selectedUsers.value === channel.value ? "highlight" : ""
+                  }
+                >
+                  <img src={profile} alt="Profile" />
+                  {channel.label}
+                  <RiArrowDropDownLine
+                    size={25}
+                    onClick={() => setOpenChannelId(channel.value)}
+                  />
+                </li>
+                {openChannelId === channel.value && (
+                  <MemberList
+                    channelDetail={channelDetail}
+                    selectedUsers={selectedUsers}
+                    existingMember={existingMember}
+                  />
+                )}
+              </>
             ))}
+        </ul>
+      </div>
+    </>
+  );
+};
+
+const MemberList = ({ channelDetail, selectedUsers, existingMember }) => {
+  const [isDataLoaded, setDataLoaded] = useState(false);
+  const [savedData, setSavedData] = useState([]);
+  const [members, setMembers] = useState([]);
+  const { data, fetchData, loading, error } = useFetch();
+
+  const userHandler = async () => {
+    const userData = getLocalStorage("headerData");
+    const url = "http://206.189.91.54/api/v1/users";
+    const config = {
+      method: "GET",
+      headers: { ...userData },
+    };
+    fetchData(url, config);
+  };
+
+  useEffect(() => {
+    if (!isDataLoaded) {
+      userHandler();
+    }
+  }, [isDataLoaded]);
+
+  useEffect(() => {
+    console.log("All User Data:", data);
+
+    if (!loading && !error && data.data) {
+
+  
+      const userDetail = data.data.flatMap((user) => ({
+        value: user.id,
+        label: user.email,
+      }));
+
+      // Save the userDetail for mapping
+      setSavedData(userDetail);
+      setDataLoaded(true);
+    }
+  }, [data, error, loading, selectedUsers]);
+
+  useEffect(() => {
+    console.log("Existing Member:", existingMember);
+
+    if (isDataLoaded && savedData.length > 0) {
+      // Get the list of user IDs from channelDetail
+      
+
+      // Filter the users based on the user IDs in channelDetail
+      const filteredUser = savedData.filter((user) =>
+        existingMember.includes(user.value)
+      );
+
+      // Update the members state with the filtered data
+      setMembers(filteredUser);
+    }
+  }, [channelDetail, existingMember, isDataLoaded, savedData]);
+
+
+  return (
+    <>
+      
+      <div className="dropdown-member-list">
+        {loading && <p>Please wait...</p>}
+        {error && <p>Unable to fetch...</p>}
+        <ul>
+          {members.map((member, index) => (
+            <li key={index}>{member.label}</li>
+          ))}
         </ul>
       </div>
     </>

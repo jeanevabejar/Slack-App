@@ -141,7 +141,6 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
 
       // Update conversation state
       setConversation(sortMessages);
-      console.log("mes", sortMessages);
     }
   }, [data, loading, error]);
 

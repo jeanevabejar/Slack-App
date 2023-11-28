@@ -7,13 +7,13 @@ import { useFetch } from "Components/CustomHook";
 import AsynchSelect from "react-select/async";
 import { useSelectedUsers } from "Components/CustomHook";
 
-const AddMemberDropdown = ({setAddDropdownVisible, existingMember}) => {
+const AddMemberDropdown = ({ setAddDropdownVisible, existingMember }) => {
   const friends = getLocalStorage("friendList") || [];
   const [selectedChannelId, setSelectedChannelId] = useState([]);
   const [options, setOptions] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
   const [selectedUsers, updateSelectedUsers] = useSelectedUsers();
-  
+
   const { data, loading, error, fetchData } = useFetch();
   const {
     data: searchData,
@@ -51,10 +51,8 @@ const AddMemberDropdown = ({setAddDropdownVisible, existingMember}) => {
 
   // Handle changes in the selected option
   const handleChange = (selectedOption) => {
-    console.log("changes", selectedOption);
     setSelectedChannelId(selectedOption.value);
-    updateSelectedUsers(selectedOption)
-    console.log("existing",existingMember)
+    updateSelectedUsers(selectedOption);
   };
 
   // Load options for the search input
@@ -70,22 +68,21 @@ const AddMemberDropdown = ({setAddDropdownVisible, existingMember}) => {
   // Handle checkbox change
   const handleCheckboxChange = (friend) => {
     const value = friend.value;
-    
-    // Check if the value is already in existingMemberUserIds
-    const isUserAlreadyMember = existingMember.some(member => member === value);
 
-    if (isUserAlreadyMember) {
+    // Check if the value is already in existingMemberUserIds
+    const isUserAlreadyMember = existingMember.some(
+      (member) => member === value
+    );
+    updateSelectedUsers("");
+    if (selectedUsers && isUserAlreadyMember) {
       // Handle the condition where the user is already a member
-      console.log("User is already a member");
-      toastError("User is already a member")
+      toastError("User is already a member");
       // You can show a message, disable the checkbox, etc.
     } else {
       // User is not a member, proceed with setting the selectedUserId
       setSelectedUserId(value);
     }
   };
-  
-  
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -107,14 +104,13 @@ const AddMemberDropdown = ({setAddDropdownVisible, existingMember}) => {
 
   // Handle success or error after data fetch
   useEffect(() => {
-    if (!loading && !error && data) {
+    if (!loading && !error && data && selectedUsers) {
       toastSuccess("Successfully Added Member");
-      setAddDropdownVisible(false)
-    } else if (error) {
+      setAddDropdownVisible(false);
+    } else if (error && !data) {
       toastError(error);
-      console.log("error");
     }
-  }, [loading, error, data]);
+  }, [loading, error, data, searchData]);
 
   return (
     <>
@@ -126,6 +122,7 @@ const AddMemberDropdown = ({setAddDropdownVisible, existingMember}) => {
             loadOptions={loadOptions}
             onChange={handleChange}
             placeholder="search..."
+            required
           />
           <div className="user-dropdown">
             {friends &&

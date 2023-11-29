@@ -1152,7 +1152,7 @@ svg {
     transform: rotate(360deg);
   }
 }
-@media screen and (min-width: 913px) {
+@media screen and (max-width: 1000px) {
   * {
     text-overflow: ellipsis;
   }

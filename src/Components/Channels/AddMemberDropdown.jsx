@@ -65,24 +65,29 @@ const AddMemberDropdown = ({ setAddDropdownVisible, existingMember }) => {
     }, 2000);
   };
 
-  // Handle checkbox change
   const handleCheckboxChange = (friend) => {
     const value = friend.value;
-
+  
     // Check if the value is already in existingMemberUserIds
     const isUserAlreadyMember = existingMember.some(
       (member) => member === value
     );
-    updateSelectedUsers("");
+  
+    console.log("Selected User ID:", selectedUserId);
+    console.log("Is User Already a Member?", isUserAlreadyMember);
+  
     if (selectedUsers && isUserAlreadyMember) {
       // Handle the condition where the user is already a member
+      console.log("User is already a member");
       toastError("User is already a member");
       // You can show a message, disable the checkbox, etc.
     } else {
       // User is not a member, proceed with setting the selectedUserId
       setSelectedUserId(value);
+      console.log("Setting Selected User ID:", value);
     }
   };
+  
 
   // Handle form submission
   const handleSubmit = async (e) => {

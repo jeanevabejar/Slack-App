@@ -1155,7 +1155,6 @@ svg {
 @media screen and (min-width: 913px) {
   * {
     text-overflow: ellipsis;
-    overflow: hidden;
   }
   .dashboard-page {
     position: relative;
@@ -1166,7 +1165,10 @@ svg {
   }
   .chatname {
     padding: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
+  }
+  .senderName {
+    font-size: 0.8rem;
   }
   .nav-container {
     min-width: 6%;

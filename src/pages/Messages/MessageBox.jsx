@@ -154,6 +154,7 @@ const ConversationPanel = ({ selectedUsers, userData }) => {
           conversation.map((message, index) => (
             <>
               <div
+              key={index}
                 className={
                   message.sender === currentUser.email
                     ? "message-item"

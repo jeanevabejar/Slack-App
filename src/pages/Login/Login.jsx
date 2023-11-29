@@ -36,28 +36,22 @@ const Login = () => {
     }));
   };
 
-  // Password validation
-  const isPasswordValid = (password) => {
-    return password.length >= 6;
-  };
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Get user data from local storage or navigate to login
-    const user = getLocalStorage("currentUser") || navigate("/login");
-    const userName = user ? extractUsername(user.email) : null;
+    const user = getLocalStorage("currentUser") || [];
+  
 
-    if (!isPasswordValid(input.password)) {
-      // Password validation failed
-      toastError("Password must be at least 6 characters long");
-    } else {
+   
       if (currentUser) {
         // User is already logged in
-        toastError(`${userName.toUpperCase()}, Already Login`);
+        toastError(`${user.email.toUpperCase()}, Already Login`);
         navigate("/dashboard/home");
-      } else {
+      } else if(!currentUser){
         // Perform login
         const url = "http://206.189.91.54/api/v1/auth/sign_in";
         const config = {
@@ -69,7 +63,7 @@ const Login = () => {
         };
         fetchData(url, config);
       }
-    }
+    
   };
 
   // Handle the response after data fetching
@@ -106,7 +100,9 @@ const Login = () => {
         email: "",
         password: "",
       });
-    } 
+    } else if(loading){
+      toastInfo("Please wait...")
+    }
   }, [data, loading, error, response, navigate]);
 
   return (

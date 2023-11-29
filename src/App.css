@@ -1151,4 +1151,51 @@ svg {
   100% {
     transform: rotate(360deg);
   }
+}
+@media screen and (min-width: 913px) {
+  * {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .dashboard-page {
+    position: relative;
+  }
+  .message-box {
+    position: relative;
+    right: -1rem;
+  }
+  .chatname {
+    padding: 0;
+    font-size: 1rem;
+  }
+  .nav-container {
+    min-width: 6%;
+  }
+  .nav-extension {
+    max-width: 35%;
+    min-width: 35%;
+    position: relative;
+    left: 1rem;
+  }
+  .search-result-container {
+    min-width: 80%;
+  }
+  .sign-up-container {
+    min-width: 50%;
+  }
+  .login-container {
+    min-width: 50%;
+  }
+  .friend-list-section button {
+    font-size: 1rem;
+  }
+  .home-btn {
+    min-width: 20%;
+  }
+  .user-container h1 {
+    font-size: 2rem;
+  }
+  .user-container p {
+    font-size: 1.5rem;
+  }
 }/*# sourceMappingURL=App.css.map */
